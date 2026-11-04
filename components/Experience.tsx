@@ -1,59 +1,67 @@
+"use client";
+
 import Image from "next/image";
 import { Eye, Home, Hourglass } from "lucide-react";
-import { Reveal } from "./Reveal";
+import { Section } from "./Section";
+import { Item, ItemLi, Stagger } from "./Motion";
 import { img, images } from "@/lib/site";
 
 const pillars = [
-  { icon: Hourglass, title: "Tempo de consulta", text: "Sem relógio na parede. A avaliação é longa o bastante para ouvir sua história antes de olhar para o seu rosto." },
-  { icon: Eye, title: "O detalhe do olhar", text: "Observamos assimetrias, expressões e proporções com calma — é aí que mora a naturalidade." },
-  { icon: Home, title: "Receber em casa", text: "Um ambiente quieto, acolhedor e seguro, pensado para que você chegue tranquila e saia ainda mais você." },
+  { icon: Hourglass, title: "Tempo de consulta", text: "Sem relógio na parede: ouvimos a sua história antes de olhar o seu rosto." },
+  { icon: Eye, title: "O detalhe do olhar", text: "Assimetrias, expressões e proporções, observadas com calma — onde mora a naturalidade." },
+  { icon: Home, title: "Receber em casa", text: "Ambiente acolhedor e seguro, para você chegar tranquila e sair ainda mais você." },
 ];
 
 export function Experience() {
   return (
-    <section id="experiencia" className="relative overflow-hidden bg-coffee px-5 py-28 text-sand md:px-10 md:py-44">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-12 items-center gap-y-16">
-        <Reveal className="relative col-span-12 md:col-span-6">
-          <div className="relative aspect-[5/6] overflow-hidden rounded-[2rem] md:w-[85%]">
-            <Image
-              src={img(images.experience, 1200)}
-              alt="Ambiente acolhedor do consultório"
-              fill
-              sizes="(min-width: 768px) 45vw, 95vw"
-              className="object-cover"
-            />
+    <Section id="experiencia" theme="white">
+      <Stagger className="grid items-center gap-[3vh] md:grid-cols-12 md:gap-16">
+        <Item className="md:col-span-6">
+          <div className="relative mx-auto w-full md:max-w-lg">
+            <div aria-hidden className="absolute -top-3 -left-3 h-[80%] w-[80%] rounded-[2rem] bg-olive/15 md:-top-6 md:-left-6" />
+            <div className="relative h-[20vh] w-[78%] overflow-hidden rounded-[2rem] md:h-[56vh]">
+              <Image
+                src={img(images.experience, 1000)}
+                alt="Ambiente acolhedor do consultório"
+                fill
+                sizes="(min-width: 768px) 35vw, 70vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute right-0 bottom-0 h-[13vh] w-[40%] overflow-hidden rounded-2xl border-4 border-white md:-bottom-8 md:h-[26vh] md:w-[44%] md:border-8">
+              <Image
+                src={img(images.detail, 600)}
+                alt="Detalhe de cuidado e acolhimento"
+                fill
+                sizes="(min-width: 768px) 18vw, 40vw"
+                className="object-cover"
+              />
+            </div>
           </div>
-          <div className="relative -mt-16 ml-auto aspect-square w-1/2 overflow-hidden rounded-[1.5rem] border-[6px] border-coffee md:absolute md:-bottom-16 md:right-0 md:mt-0 md:w-2/5">
-            <Image
-              src={img(images.detail, 700)}
-              alt="Detalhe de cuidado e acolhimento"
-              fill
-              sizes="25vw"
-              className="object-cover"
-            />
-          </div>
-        </Reveal>
+        </Item>
 
-        <div className="col-span-12 md:col-span-5 md:col-start-8">
-          <Reveal>
-            <p className="eyebrow mb-6 !text-[#d9a58f]">A experiência</p>
-            <h2 className="display-lg">
-              Como ser recebida <em className="text-[#d9a58f]">em casa.</em>
+        <div className="md:col-span-6">
+          <Item>
+            <p className="eyebrow mb-[1.5vh] text-olive">A experiência</p>
+            <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
+              Como ser recebida <span className="text-olive">em casa.</span>
             </h2>
-          </Reveal>
-          <ul className="mt-12 space-y-10">
-            {pillars.map((p, i) => (
-              <Reveal as="li" key={p.title} delay={i * 0.1} className="flex gap-5">
-                <p.icon size={22} strokeWidth={1.25} className="mt-1 shrink-0 text-[#d9a58f]" />
+          </Item>
+          <ul className="mt-[2.5vh] border-t border-wine/30">
+            {pillars.map((p) => (
+              <ItemLi key={p.title} className="flex gap-4 border-b border-wine/30 py-[1.5vh] md:py-5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-olive text-white">
+                  <p.icon size={16} strokeWidth={1.5} />
+                </span>
                 <div>
-                  <h3 className="font-serif text-xl tracking-tight">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-sand/70">{p.text}</p>
+                  <h3 className="text-base tracking-tight uppercase md:text-xl">{p.title}</h3>
+                  <p className="mt-0.5 text-[0.78rem] leading-snug md:mt-1 md:text-base">{p.text}</p>
                 </div>
-              </Reveal>
+              </ItemLi>
             ))}
           </ul>
         </div>
-      </div>
-    </section>
+      </Stagger>
+    </Section>
   );
 }

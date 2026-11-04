@@ -1,63 +1,53 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-sand: #f5f2e9;
-  --color-sand-deep: #ebe5d8;
-  --color-coffee: #2c1a14;
-  --color-coffee-soft: #5b463d;
-  --color-terracotta: #b76e52;
-  --color-olive: #6f7457;
-  --font-serif: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+
+@font-face {
+  font-family: "Nexa";
+  font-weight: 100 900; /* único arquivo: ExtraLight vale para todos os pesos */
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Nexa-ExtraLight.ttf") format("truetype");
 }
 
-html {
-  scroll-behavior: smooth;
+@theme inline {
+  --color-brown: #36111c;
+  --color-olive: #605331;
+  --color-wine: #60211e;
+  --font-sans: "Nexa", var(--font-fallback), system-ui, sans-serif;
 }
+
 
 body {
-  overflow-x: clip;
-  background: var(--color-sand);
-  color: var(--color-coffee);
+  background: #ffffff;
+  color: var(--color-brown);
   font-family: var(--font-sans);
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  overflow: hidden;
 }
 
-::selection {
-  background: var(--color-terracotta);
-  color: var(--color-sand);
-}
 
-/* Fluid display type: scales from phone to desktop without breakpoints */
-.display-xl {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(2.75rem, 9.5vw, 7.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-}
-.display-lg {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(2.1rem, 6vw, 4.5rem);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-}
-.display-md {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 3.4vw, 2.25rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
+::selection { background: var(--color-olive); color: #fff; }
+
+html, body { height: 100%; }
+
 .eyebrow {
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: var(--color-terracotta);
+  letter-spacing: 0.3em;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+h1, h2, h3 { word-spacing: 0.08em; }
+
+/* Nexa só tem ExtraLight: o traço engrossa os títulos mantendo a fonte */
+h1, h2, h3, .fat {
+  -webkit-text-stroke: 0.028em currentColor;
+  paint-order: stroke fill;
 }
+.fat-sm { -webkit-text-stroke: 0.4px currentColor; }
+
+:focus-visible { outline: 2px solid var(--color-olive); outline-offset: 3px; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html, main { scroll-behavior: auto !important; } }

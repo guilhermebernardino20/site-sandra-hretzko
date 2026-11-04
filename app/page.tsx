@@ -1,25 +1,27 @@
 import { Header } from "@/components/Header";
+import { FloatingCTA } from "@/components/FloatingCTA";
 import { Hero } from "@/components/Hero";
 import { Philosophy } from "@/components/Philosophy";
 import { Procedures } from "@/components/Procedures";
+import { Steps } from "@/components/Steps";
 import { Experience } from "@/components/Experience";
 import { Results } from "@/components/Results";
-import { About } from "@/components/About";
-import { Footer } from "@/components/Footer";
+import { AboutFooter } from "@/components/AboutFooter";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <FloatingCTA />
+      <main id="conteudo" className="h-screen h-dvh snap-y snap-mandatory overflow-y-scroll scroll-smooth">
         <Hero />
         <Philosophy />
         <Procedures />
+        <Steps />
         <Experience />
         <Results />
-        <About />
+        <AboutFooter />
       </main>
-      <Footer />
     </>
   );
 }

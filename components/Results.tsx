@@ -1,93 +1,122 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Quote } from "lucide-react";
-import { Reveal } from "./Reveal";
-import { img, images } from "@/lib/site";
+import { useEffect, useRef, useState } from "react";
+import { Section } from "./Section";
+import { Button } from "./Button";
+import { Item, Stagger } from "./Motion";
+import { img, images, whatsappUrl } from "@/lib/site";
 
 /**
- * TROCAR antes de publicar: `before` e `after` devem ser fotos reais
- * (com autorização escrita da paciente). Enquanto isso usam a mesma imagem de banco.
- * Depoimentos abaixo são texto de exemplo — substitua por relatos reais.
+ * TROCAR antes de publicar: fotos reais de antes/depois (com autorização escrita da paciente)
+ * e depoimentos reais. Imagens são de banco e os textos, de exemplo.
  */
-type Case = { id: string; name: string; note: string; before: string; after: string };
+type Slide =
+  | { kind: "photo"; src: string; tag: string; label: string }
+  | { kind: "quote"; text: string; who: string };
 
-const cases: Case[] = [
-  { id: "c1", name: "M., 52 anos", note: "Fios faciais · 60 dias", before: images.r1, after: images.r1 },
-  { id: "c2", name: "L., 47 anos", note: "Preenchimento de olheiras · 30 dias", before: images.r2, after: images.r2 },
-  { id: "c3", name: "R., 58 anos", note: "Fios + bioestimulador · 90 dias", before: images.r3, after: images.r3 },
+const slides: Slide[] = [
+  { kind: "photo", src: images.philosophy, tag: "Fios faciais", label: "M., 52 · após 60 dias" },
+  { kind: "quote", text: "Ninguém soube dizer o que eu tinha feito. Só me acharam descansada.", who: "Paciente, 54" },
+  { kind: "photo", src: images.r2, tag: "Preenchimento", label: "L., 47 · após 30 dias" },
+  { kind: "quote", text: "Eu me reconheço no espelho. É exatamente o que eu pedi.", who: "Paciente, 61" },
+  { kind: "photo", src: images.r3, tag: "Fios + bioestimulador", label: "R., 58 · após 90 dias" },
+  { kind: "quote", text: "Foi a primeira vez que me ouviram antes de me tratar.", who: "Paciente, 49" },
 ];
-
-const testimonials = [
-  { text: "Saí do consultório e ninguém soube dizer o que eu tinha feito. Só me acharam descansada.", who: "Paciente, 54 anos" },
-  { text: "Foi a primeira vez que me ouviram antes de me tratar. Ela até disse que eu não precisava de uma coisa.", who: "Paciente, 49 anos" },
-  { text: "Eu me reconheço no espelho. É exatamente o que eu pedi.", who: "Paciente, 61 anos" },
-];
-
-function BeforeAfter({ c }: { c: Case }) {
-  const [pos, setPos] = useState(50);
-  return (
-    <figure>
-      <div className="relative aspect-[3/4] select-none overflow-hidden rounded-[1.75rem]">
-        <Image src={img(c.after, 900)} alt={`Depois — ${c.name}`} fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover" />
-        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <Image src={img(c.before, 900)} alt={`Antes — ${c.name}`} fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover saturate-[.8]" />
-        </div>
-        <div className="pointer-events-none absolute inset-y-0 w-px bg-sand" style={{ left: `${pos}%` }}>
-          <span className="absolute top-1/2 left-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full border border-sand bg-sand/30 backdrop-blur" />
-        </div>
-        <span className="absolute top-4 left-4 rounded-full bg-sand/80 px-3 py-1 text-[0.6rem] uppercase tracking-[0.2em]">Antes</span>
-        <span className="absolute top-4 right-4 rounded-full bg-sand/80 px-3 py-1 text-[0.6rem] uppercase tracking-[0.2em]">Depois</span>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          value={pos}
-          onChange={(e) => setPos(Number(e.target.value))}
-          aria-label={`Comparar antes e depois — ${c.name}`}
-          className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
-        />
-      </div>
-      <figcaption className="mt-4 flex justify-between text-sm">
-        <span className="font-serif text-lg">{c.name}</span>
-        <span className="text-coffee-soft">{c.note}</span>
-      </figcaption>
-    </figure>
-  );
-}
 
 export function Results() {
+  const wrap = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const [limit, setLimit] = useState(0);
+  const x = useMotionValue(0);
+  const progress = useTransform(x, [0, -limit || -1], ["0%", "100%"]);
+
+  useEffect(() => {
+    const measure = () => {
+      if (wrap.current && track.current) setLimit(Math.max(0, track.current.scrollWidth - wrap.current.offsetWidth));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
   return (
-    <section id="resultados" className="px-5 py-28 md:px-10 md:py-44">
-      <div className="mx-auto max-w-[1400px]">
-        <Reveal className="mb-16 max-w-2xl md:mb-24">
-          <p className="eyebrow mb-6">Resultados naturais</p>
-          <h2 className="display-lg">
-            A melhor prova é a <em className="text-terracotta">sutileza.</em>
-          </h2>
-        </Reveal>
+    <Section id="resultados" theme="wine">
+      <Stagger>
+        <Item className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow mb-[1.5vh] text-[#E6CFA5]">Resultados naturais</p>
+            <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
+              Resultados que <span className="text-[#E6CFA5]">ninguém percebe.</span>
+            </h2>
+          </div>
+          <p className="max-w-xs text-[0.85rem] leading-snug text-white/85 md:text-base">
+            Quem vê, nota você — não o procedimento.
+          </p>
+        </Item>
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-3">
-          {cases.map((c, i) => (
-            <Reveal key={c.id} delay={i * 0.12} className={i === 1 ? "md:mt-20" : ""}>
-              <BeforeAfter c={c} />
-            </Reveal>
-          ))}
-        </div>
+        <Item>
+          <div ref={wrap} className="mt-[3.5vh] overflow-hidden">
+            <motion.div
+              ref={track}
+              drag="x"
+              dragConstraints={{ left: -limit, right: 0 }}
+              dragElastic={0.1}
+              style={{ x }}
+              className="flex w-max cursor-grab items-stretch gap-4 active:cursor-grabbing md:gap-6"
+            >
+              {slides.map((s, i) =>
+                s.kind === "photo" ? (
+                  <figure key={i} className="w-[54vw] shrink-0 select-none md:w-[20rem]">
+                    <div className="relative h-[30vh] overflow-hidden rounded-2xl md:h-[44vh]">
+                      <Image
+                        src={img(s.src, 800)}
+                        alt={`${s.tag} — ${s.label}`}
+                        fill
+                        sizes="(min-width: 768px) 20rem, 54vw"
+                        draggable={false}
+                        className="pointer-events-none object-cover"
+                      />
+                      <span className="eyebrow absolute top-3 left-3 rounded-full bg-white/80 px-3 py-1.5 !text-[0.55rem] text-brown backdrop-blur">
+                        {s.tag}
+                      </span>
+                    </div>
+                    <figcaption className="mt-2 text-[0.7rem] text-white/80 md:text-xs">{s.label}</figcaption>
+                  </figure>
+                ) : (
+                  <blockquote
+                    key={i}
+                    className="flex w-[60vw] shrink-0 select-none flex-col justify-between rounded-2xl bg-white p-5 text-brown md:w-[20rem] md:p-8"
+                  >
+                    <Quote size={20} strokeWidth={1.5} className="text-wine" />
+                    <p className="fat-sm text-base leading-snug md:text-2xl">“{s.text}”</p>
+                    <footer className="eyebrow !text-[0.58rem] text-olive">{s.who}</footer>
+                  </blockquote>
+                ),
+              )}
+            </motion.div>
+          </div>
 
-        <div className="mt-28 grid grid-cols-1 gap-12 border-t border-coffee/10 pt-16 md:grid-cols-3 md:gap-10">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.who + i} delay={i * 0.12}>
-              <blockquote>
-                <Quote size={20} strokeWidth={1.25} className="mb-5 text-terracotta" />
-                <p className="font-serif text-xl leading-snug tracking-tight md:text-2xl">{t.text}</p>
-                <footer className="mt-5 text-xs uppercase tracking-[0.22em] text-coffee-soft">{t.who}</footer>
-              </blockquote>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
+          <div className="mt-[2vh] flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <span className="eyebrow !text-[0.58rem] text-[#E6CFA5]">Arraste</span>
+              <span className="relative block h-px w-28 bg-white/25">
+                <motion.span style={{ width: progress }} className="absolute inset-y-0 left-0 bg-[#E6CFA5]" />
+              </span>
+            </div>
+            <div className="hidden md:block">
+              <Button href={whatsappUrl} variant="light">
+                Quero um resultado natural
+              </Button>
+            </div>
+          </div>
+          <p className="mt-[1.5vh] text-[0.65rem] text-white/60">
+            Resultados variam de pessoa para pessoa. Imagens publicadas com autorização das pacientes.
+          </p>
+        </Item>
+      </Stagger>
+    </Section>
   );
 }
