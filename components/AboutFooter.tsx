@@ -5,6 +5,7 @@ import { AtSign, BookOpen, GraduationCap, HeartHandshake, MapPin, MessageCircle 
 import { Section } from "./Section";
 import { Button } from "./Button";
 import { Faq } from "./Faq";
+import { Blog } from "./Blog";
 import { Item, Stagger } from "./Motion";
 import { photos, site, whatsappUrl } from "@/lib/site";
 
@@ -57,6 +58,8 @@ export function AboutFooter() {
           </div>
         </Stagger>
       </Section>
+
+      <Blog />
 
       <Faq />
 

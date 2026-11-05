@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { whatsappUrl } from "@/lib/site";
 import { useActiveSection } from "@/lib/useActiveSection";
 
-export const sectionIds = ["inicio", "filosofia", "procedimentos", "como-funciona", "experiencia", "resultados", "sobre", "duvidas", "contato"];
+export const sectionIds = ["inicio", "filosofia", "procedimentos", "como-funciona", "experiencia", "resultados", "sobre", "blog", "duvidas", "contato"];
 
 const links = [
   { id: "filosofia", label: "Filosofia" },
@@ -15,14 +15,15 @@ const links = [
   { id: "experiencia", label: "Experiência" },
   { id: "resultados", label: "Resultados" },
   { id: "sobre", label: "Sobre" },
+  { id: "blog", label: "Blog" },
   { id: "duvidas", label: "Dúvidas" },
 ];
 // Menu do desktop mais enxuto; o menu mobile mostra todos
-const desktopLinks = links.filter((l) => ["filosofia", "procedimentos", "experiencia", "resultados", "sobre"].includes(l.id));
+const desktopLinks = links.filter((l) => ["filosofia", "procedimentos", "experiencia", "resultados", "sobre", "blog"].includes(l.id));
 
 const EASE = [0.76, 0, 0.24, 1] as const;
 // Seções de fundo escuro: a barra troca para vidro escuro e texto claro
-const darkSections = new Set(["filosofia", "como-funciona", "resultados", "duvidas", "contato"]);
+const darkSections = new Set(["filosofia", "como-funciona", "resultados", "blog", "duvidas", "contato"]);
 
 export function Header() {
   const active = useActiveSection(sectionIds);
