@@ -6,7 +6,7 @@ import { Section } from "./Section";
 import { Button } from "./Button";
 import { Faq } from "./Faq";
 import { Item, Stagger } from "./Motion";
-import { img, images, site, whatsappUrl } from "@/lib/site";
+import { photos, site, whatsappUrl } from "@/lib/site";
 
 export function AboutFooter() {
   return (
@@ -17,7 +17,7 @@ export function AboutFooter() {
             <div className="relative mx-auto w-full md:max-w-md">
               <div aria-hidden className="absolute -bottom-3 -left-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-bottom-6 md:-left-6" />
               <div className="relative h-[24vh] w-full overflow-hidden rounded-[2rem] md:h-[66vh]">
-                <Image src={img(images.doctor, 1000)} alt="Dra. Sandra Hretzko" fill sizes="(min-width: 768px) 35vw, 90vw" className="object-cover object-top" />
+                <Image src={photos.desk} alt="Dra. Sandra Hretzko em seu consultório" fill sizes="(min-width: 768px) 35vw, 90vw" className="object-cover object-[18%_16%]" />
               </div>
             </div>
           </Item>

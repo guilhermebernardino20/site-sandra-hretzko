@@ -7,7 +7,7 @@ import { Section } from "./Section";
 import { Button } from "./Button";
 import { Ticker } from "./Ticker";
 import { Item, Stagger } from "./Motion";
-import { img, images, whatsappUrl } from "@/lib/site";
+import { photos, whatsappUrl } from "@/lib/site";
 
 const chips = [
   { icon: ScanFace, label: "Indicação precisa" },
@@ -92,12 +92,12 @@ export function Hero() {
                 transition={{ duration: 2, ease: "easeOut" }}
               >
                 <Image
-                  src={img(images.doctor, 1000)}
+                  src={photos.mirror}
                   alt="Dra. Sandra Hretzko"
                   fill
                   priority
                   sizes="(min-width: 768px) 30vw, 90vw"
-                  className="object-cover object-top"
+                  className="object-cover object-[58%_30%]"
                 />
               </motion.div>
               <div className="absolute inset-x-5 bottom-5 hidden rounded-2xl bg-white/70 p-4 backdrop-blur-md md:block">

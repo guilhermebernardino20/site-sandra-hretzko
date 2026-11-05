@@ -29,3 +29,9 @@ export const images = {
 /** Link do WhatsApp com mensagem específica (ex.: por procedimento). */
 export const waLink = (message: string) =>
   `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+/** Fotos reais da Dra. Sandra (public/images). */
+export const photos = {
+  mirror: "/images/dra-sandra-espelho.jpg", // jaleco branco, olhando o espelho
+  desk: "/images/dra-sandra-mesa.jpg", // à mesa do consultório
+} as const;
