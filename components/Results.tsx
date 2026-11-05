@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Quote } from "lucide-react";
+import { animate, motion, useMotionValue, useMotionValueEvent, useTransform } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Section } from "./Section";
 import { Button } from "./Button";
@@ -32,6 +32,25 @@ export function Results() {
   const [limit, setLimit] = useState(0);
   const x = useMotionValue(0);
   const progress = useTransform(x, [0, -limit || -1], ["0%", "100%"]);
+
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+  const updateEnds = (v: number) => {
+    setAtStart(v >= -2);
+    setAtEnd(v <= -limit + 2);
+  };
+  useMotionValueEvent(x, "change", updateEnds);
+  useEffect(() => updateEnds(x.get()), [limit]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /** Avança ou volta um slide (largura do cartão + espaçamento). */
+  const go = (dir: 1 | -1) => {
+    const t = track.current;
+    const first = t?.children[0] as HTMLElement | undefined;
+    if (!t || !first) return;
+    const gap = parseFloat(getComputedStyle(t).columnGap) || 16;
+    const target = Math.min(0, Math.max(-limit, x.get() - dir * (first.offsetWidth + gap)));
+    animate(x, target, { duration: 0.6, ease: [0.76, 0, 0.24, 1] });
+  };
 
   useEffect(() => {
     const measure = () => {
@@ -100,11 +119,31 @@ export function Results() {
           </div>
 
           <div className="mt-[2vh] flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="eyebrow !text-[0.58rem] text-[#E6CFA5]">Arraste</span>
-              <span className="relative block h-px w-28 bg-white/25">
-                <motion.span style={{ width: progress }} className="absolute inset-y-0 left-0 bg-[#E6CFA5]" />
-              </span>
+            <div className="flex flex-1 items-center justify-between gap-4 md:flex-none md:justify-start md:gap-8">
+              <div className="flex items-center gap-4">
+                <span className="eyebrow !text-[0.58rem] text-[#E6CFA5]">Arraste</span>
+                <span className="relative block h-px w-20 bg-white/25 md:w-28">
+                  <motion.span style={{ width: progress }} className="absolute inset-y-0 left-0 bg-[#E6CFA5]" />
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {([-1, 1] as const).map((dir) => {
+                  const disabled = dir === -1 ? atStart : atEnd;
+                  const Icon = dir === -1 ? ChevronLeft : ChevronRight;
+                  return (
+                    <button
+                      key={dir}
+                      type="button"
+                      onClick={() => go(dir)}
+                      disabled={disabled}
+                      aria-label={dir === -1 ? "Resultado anterior" : "Próximo resultado"}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/40 text-white transition-all duration-300 hover:bg-white hover:text-wine disabled:pointer-events-none disabled:opacity-30"
+                    >
+                      <Icon size={18} strokeWidth={1.5} />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             <div className="hidden md:block">
               <Button href={whatsappUrl} variant="light">

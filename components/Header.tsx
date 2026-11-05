@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, MessageCircle, X } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { whatsappUrl } from "@/lib/site";
 import { useActiveSection } from "@/lib/useActiveSection";
@@ -21,12 +21,15 @@ const links = [
 const desktopLinks = links.filter((l) => ["filosofia", "procedimentos", "experiencia", "resultados", "sobre"].includes(l.id));
 
 const EASE = [0.76, 0, 0.24, 1] as const;
+// Seções de fundo escuro: a barra troca para vidro escuro e texto claro
+const darkSections = new Set(["filosofia", "como-funciona", "resultados", "duvidas", "contato"]);
 
 export function Header() {
   const active = useActiveSection(sectionIds);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
+  const dark = darkSections.has(active) && !open;
 
   // O scroll acontece no <main> (scroll-snap), não na janela
   useEffect(() => {
@@ -59,40 +62,47 @@ export function Header() {
         className="fixed inset-x-0 top-3 z-50 px-4 md:px-8"
       >
         <div
-          className={`relative mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-full border border-brown/10 text-brown backdrop-blur-xl transition-all duration-500 ${
+          className={`relative mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-full border backdrop-blur-xl transition-all duration-700 ${
+            dark ? "border-white/20 bg-brown/55 text-white" : "border-brown/10 bg-white/70 text-brown"
+          } ${
             scrolled
-              ? "bg-white/85 py-1.5 pr-1.5 pl-2.5 shadow-[0_10px_40px_-12px_rgba(54,17,28,0.25)]"
-              : "bg-white/60 py-2.5 pr-2 pl-3"
+              ? "py-1.5 pr-1.5 pl-2.5 shadow-[0_14px_44px_-14px_rgba(54,17,28,0.35)]"
+              : "py-2.5 pr-2 pl-3 shadow-[0_6px_24px_-12px_rgba(54,17,28,0.18)]"
           }`}
         >
           {/* Wordmark */}
           <a href="#inicio" onClick={() => setOpen(false)} className="group flex flex-col pl-3 leading-none" aria-label="Dra. Sandra Hretzko — início">
             <span className="fat-sm text-[0.58rem] tracking-[0.14em] whitespace-nowrap uppercase sm:text-[0.74rem] sm:tracking-[0.2em]">
-              Dra. Sandra <span className="text-wine transition-colors duration-500 group-hover:text-olive">Hretzko</span>
+              Dra. Sandra <span className={`transition-colors duration-500 ${dark ? "text-[#E6CFA5]" : "text-wine group-hover:text-olive"}`}>Hretzko</span>
             </span>
-            <span className="mt-1.5 flex items-center gap-2 text-[0.46rem] tracking-[0.26em] text-olive uppercase sm:text-[0.54rem] sm:tracking-[0.34em]">
-              <span className="block h-px w-4 bg-olive/60 transition-all duration-500 group-hover:w-7" />
+            <span className={`mt-1.5 flex items-center gap-2 text-[0.46rem] tracking-[0.26em] uppercase transition-colors duration-700 ${dark ? "text-white/70" : "text-olive"} sm:text-[0.54rem] sm:tracking-[0.34em]`}>
+              <span className={`block h-px w-4 transition-all duration-500 group-hover:w-7 ${dark ? "bg-white/60" : "bg-olive/60"}`} />
               Medicina estética
             </span>
           </a>
 
-          <nav aria-label="Principal" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex">
-            {desktopLinks.map((l) => (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                className={`group relative py-2 text-[0.68rem] tracking-[0.2em] uppercase transition-colors duration-300 hover:text-wine ${
-                  active === l.id ? "text-wine" : ""
-                }`}
-              >
-                {l.label}
-                <span
-                  className={`absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-wine transition-all duration-300 ${
-                    active === l.id ? "opacity-100" : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-60"
+          <nav aria-label="Principal" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
+            {desktopLinks.map((l) => {
+              const on = active === l.id;
+              return (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  className={`relative rounded-full px-4 py-2 text-[0.68rem] tracking-[0.2em] uppercase transition-colors duration-500 ${
+                    dark ? (on ? "text-white" : "text-white/70 hover:text-white") : on ? "text-wine" : "text-brown/75 hover:text-wine"
                   }`}
-                />
-              </a>
-            ))}
+                >
+                  {on && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      className={`absolute inset-0 rounded-full ${dark ? "bg-white/15" : "bg-wine/10"}`}
+                    />
+                  )}
+                  <span className="relative">{l.label}</span>
+                </a>
+              );
+            })}
           </nav>
 
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
@@ -100,25 +110,46 @@ export function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="fat-sm group flex items-center gap-2 rounded-full bg-brown px-3 py-3 text-[0.6rem] tracking-[0.12em] sm:px-4 sm:text-[0.68rem] sm:tracking-[0.18em] text-white uppercase transition-colors duration-500 hover:bg-wine"
+              className={`fat-sm group flex items-center gap-2 rounded-full py-2 pr-2 pl-3.5 text-[0.6rem] tracking-[0.12em] uppercase transition-colors duration-500 sm:pl-5 sm:text-[0.68rem] sm:tracking-[0.18em] ${
+                dark ? "bg-white text-brown hover:bg-[#E6CFA5]" : "bg-brown text-white hover:bg-wine"
+              }`}
             >
-              <MessageCircle size={14} strokeWidth={1.75} className="hidden transition-transform duration-500 group-hover:rotate-12 sm:block" />
               Agendar
+              <span
+                className={`flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-500 group-hover:rotate-45 ${
+                  dark ? "bg-brown text-white" : "bg-white/15 text-white"
+                }`}
+              >
+                <ArrowUpRight size={14} strokeWidth={1.75} />
+              </span>
             </a>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brown/15 transition-colors hover:bg-brown hover:text-white lg:hidden"
+              className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors lg:hidden ${
+                dark ? "border-white/30 hover:bg-white/15" : "border-brown/15 hover:bg-brown/5"
+              }`}
             >
-              {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
+              <motion.span
+                aria-hidden
+                className="absolute block h-px w-4 bg-current"
+                animate={{ y: open ? 0 : -3, rotate: open ? 45 : 0 }}
+                transition={{ duration: 0.4, ease: EASE }}
+              />
+              <motion.span
+                aria-hidden
+                className="absolute block h-px w-4 bg-current"
+                animate={{ y: open ? 0 : 3, rotate: open ? -45 : 0 }}
+                transition={{ duration: 0.4, ease: EASE }}
+              />
             </button>
           </div>
 
           {/* Progresso de leitura */}
-          <span aria-hidden className="absolute inset-x-6 bottom-0 h-px bg-brown/5">
-            <span className="block h-full origin-left bg-wine" style={{ transform: `scaleX(${progress})` }} />
+          <span aria-hidden className={`absolute inset-x-6 bottom-0 h-px ${dark ? "bg-white/10" : "bg-brown/5"}`}>
+            <span className={`block h-full origin-left ${dark ? "bg-[#E6CFA5]" : "bg-wine"}`} style={{ transform: `scaleX(${progress})` }} />
           </span>
         </div>
       </motion.header>
