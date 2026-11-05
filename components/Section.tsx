@@ -26,7 +26,8 @@ export function Section({
       id={id}
       className={`relative flex min-h-screen min-h-dvh w-full snap-start flex-col justify-center overflow-hidden ${themes[theme]} ${className}`}
     >
-      <div className="mx-auto w-full max-w-6xl px-6 pt-[11vh] pb-[6vh] md:px-12">{children}</div>
+      {theme !== "white" && <div aria-hidden className="grain pointer-events-none absolute inset-0" />}
+      <div className="relative mx-auto w-full max-w-6xl px-6 pt-[11vh] pb-[6vh] md:px-12">{children}</div>
     </section>
   );
 }

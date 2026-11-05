@@ -6,7 +6,7 @@ import { HeartHandshake, ScanFace, Timer } from "lucide-react";
 import { Section } from "./Section";
 import { Button } from "./Button";
 import { Ticker } from "./Ticker";
-import { Item, Stagger } from "./Motion";
+import { Item, MaskLine, Reveal, Stagger } from "./Motion";
 import { photos, whatsappUrl } from "@/lib/site";
 
 const chips = [
@@ -46,14 +46,12 @@ export function Hero() {
               Medicina estética natural
             </p>
           </Item>
-          <Item>
-            <h1 className="text-[clamp(2rem,min(10.8vw,8vh),5.4rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
-              <span className="block">Realçar</span>
-              <span className="block">
-                o que já é <span className="text-wine">seu</span>
-              </span>
-            </h1>
-          </Item>
+          <h1 className="text-[clamp(2rem,min(10.8vw,8vh),5.4rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
+            <MaskLine>Realçar</MaskLine>
+            <MaskLine>
+              o que já é <span className="text-wine">seu</span>
+            </MaskLine>
+          </h1>
           <Item>
             <p className="mt-[2vh] max-w-md text-[0.95rem] leading-relaxed md:text-lg">
               A estética unida à naturalidade e ao propósito, para que você continue se reconhecendo no espelho.
@@ -83,14 +81,9 @@ export function Hero() {
         <Item className="md:col-span-5">
           <div className="relative mx-auto w-full md:max-w-sm">
             <div aria-hidden className="absolute -right-3 -bottom-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-right-6 md:-bottom-6" />
-            <div aria-hidden className="absolute top-1/3 -left-10 hidden h-24 w-24 rounded-full border border-wine/40 md:block" />
+            <div aria-hidden className="animate-float absolute top-1/3 -left-10 hidden h-24 w-24 rounded-full border border-wine/40 md:block" />
             <div className="relative h-[22vh] w-full overflow-hidden rounded-[2rem] md:h-[66vh] md:rounded-t-[999px] md:rounded-b-[2rem]">
-              <motion.div
-                className="absolute inset-0"
-                initial={{ scale: 1.15 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 2, ease: "easeOut" }}
-              >
+              <Reveal className="absolute inset-0">
                 <Image
                   src={photos.mirror}
                   alt="Dra. Sandra Hretzko"
@@ -99,13 +92,13 @@ export function Hero() {
                   sizes="(min-width: 768px) 30vw, 90vw"
                   className="object-cover object-[58%_30%]"
                 />
-              </motion.div>
+              </Reveal>
               <div className="absolute inset-x-5 bottom-5 hidden rounded-2xl bg-white/70 p-4 backdrop-blur-md md:block">
                 <p className="fat-sm text-sm">Dra. Sandra Hretzko</p>
                 <p className="text-xs">Medicina estética natural</p>
               </div>
             </div>
-            <div className="absolute -top-3 -right-2 md:top-10 md:-left-12 md:right-auto">
+            <div className="animate-float-slow absolute -top-3 -right-2 md:top-10 md:-left-12 md:right-auto">
               <SpinningBadge />
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Section } from "./Section";
-import { Item, ItemLi, Stagger } from "./Motion";
+import { Item, ItemLi, Reveal, Stagger } from "./Motion";
 import { img, images } from "@/lib/site";
 
 const principles = ["Anatomia antes da técnica", "Menos, e melhor indicado", "Você, apenas descansada"];
@@ -39,7 +39,7 @@ export function Philosophy() {
           </ul>
         </div>
         <Item className="hidden md:col-span-5 md:block">
-          <div className="relative h-[62vh] overflow-hidden rounded-[2rem]">
+          <Reveal className="relative h-[62vh] overflow-hidden rounded-[2rem]">
             <Image
               src={img(images.philosophy, 1000)}
               alt="Retrato de mulher com pele natural"
@@ -47,7 +47,7 @@ export function Philosophy() {
               sizes="35vw"
               className="object-cover"
             />
-          </div>
+          </Reveal>
         </Item>
       </Stagger>
     </Section>

@@ -53,3 +53,33 @@ h1, h2, h3, .fat {
 :focus-visible { outline: 2px solid var(--color-olive); outline-offset: 3px; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html, main { scroll-behavior: auto !important; } }
+
+/* ——— Efeitos ——— */
+/* Brilho que atravessa o botão no hover */
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after { transform: translateX(120%); }
+
+/* Flutuação suave de elementos decorativos */
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: float 9s ease-in-out infinite reverse; }
+
+/* Grão sutil nas seções escuras (textura de papel/filme) */
+.grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-float-slow { animation: none; }
+  .btn-shine::after { display: none; }
+}

@@ -31,3 +31,39 @@ export function Item(props: HTMLMotionProps<"div">) {
 export function ItemLi(props: HTMLMotionProps<"li">) {
   return <motion.li variants={item} {...props} />;
 }
+
+const maskLine = {
+  hidden: { y: "108%" },
+  visible: { y: "0%", transition: { duration: 1, ease: [0.76, 0, 0.24, 1] as const } },
+};
+
+/** Linha de título que "sobe" de dentro de uma máscara (use dentro de <Stagger>). */
+export function MaskLine({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <span className="block overflow-hidden pb-[0.1em] -mb-[0.1em]">
+      <motion.span variants={maskLine} className={`block ${className}`}>
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
+const clip = {
+  hidden: { clipPath: "inset(100% 0% 0% 0%)" },
+  visible: { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1] as const } },
+};
+const zoomOut = {
+  hidden: { scale: 1.25 },
+  visible: { scale: 1, transition: { duration: 1.8, ease: "easeOut" as const } },
+};
+
+/** Moldura de foto: revela com clip-path e a imagem assenta com um zoom suave (use dentro de <Stagger>). */
+export function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <motion.div variants={clip} className={className}>
+      <motion.div variants={zoomOut} className="absolute inset-0">
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}

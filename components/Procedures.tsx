@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Clock, Hourglass, CircleSlash } from "lucide-react";
 import { Section } from "./Section";
 import { Button } from "./Button";
-import { Item, ItemLi, Stagger } from "./Motion";
+import { Item, ItemLi, Reveal, Stagger } from "./Motion";
 import { img, images, waLink, whatsappUrl } from "@/lib/site";
 
 const procedures = [
@@ -45,9 +45,9 @@ export function Procedures() {
         <ul className="mt-[3vh] grid gap-[2vh] md:grid-cols-2 md:gap-12">
           {procedures.map((p) => (
             <ItemLi key={p.name} className="grid grid-cols-[28%_1fr] gap-4 border-t border-wine/40 pt-[2vh] md:grid-cols-1 md:gap-0 md:pt-5">
-              <div className="relative h-full min-h-[18vh] overflow-hidden rounded-2xl md:h-[26vh] md:min-h-0">
+              <Reveal className="relative h-full min-h-[18vh] overflow-hidden rounded-2xl md:h-[26vh] md:min-h-0">
                 <Image src={img(p.image, 800)} alt={p.name} fill sizes="(min-width: 768px) 45vw, 30vw" className="object-cover" />
-              </div>
+              </Reveal>
               <div className="md:mt-5">
                 <h3 className="text-xl tracking-tighter uppercase md:text-3xl">{p.name}</h3>
                 <p className="mt-1 hidden text-base md:block">{p.lead}</p>

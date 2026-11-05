@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Eye, Home, Hourglass } from "lucide-react";
 import { Section } from "./Section";
-import { Item, ItemLi, Stagger } from "./Motion";
+import { Item, ItemLi, Reveal, Stagger } from "./Motion";
 import { img, images } from "@/lib/site";
 
 const pillars = [
@@ -19,7 +19,7 @@ export function Experience() {
         <Item className="md:col-span-6">
           <div className="relative mx-auto w-full md:max-w-lg">
             <div aria-hidden className="absolute -top-3 -left-3 h-[80%] w-[80%] rounded-[2rem] bg-olive/15 md:-top-6 md:-left-6" />
-            <div className="relative h-[20vh] w-[78%] overflow-hidden rounded-[2rem] md:h-[56vh]">
+            <Reveal className="relative h-[20vh] w-[78%] overflow-hidden rounded-[2rem] md:h-[56vh]">
               <Image
                 src={img(images.experience, 1000)}
                 alt="Ambiente acolhedor do consultório"
@@ -27,7 +27,7 @@ export function Experience() {
                 sizes="(min-width: 768px) 35vw, 70vw"
                 className="object-cover"
               />
-            </div>
+            </Reveal>
             <div className="absolute right-0 bottom-0 h-[13vh] w-[40%] overflow-hidden rounded-2xl border-4 border-white md:-bottom-8 md:h-[26vh] md:w-[44%] md:border-8">
               <Image
                 src={img(images.detail, 600)}

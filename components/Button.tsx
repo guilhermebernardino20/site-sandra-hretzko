@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 
 const variants = {
   brown: "bg-brown text-white hover:bg-wine",
@@ -23,17 +23,39 @@ export function Button({
   className?: string;
 }) {
   const external = href.startsWith("http");
+  // Efeito magnético: o botão acompanha levemente o cursor (só com mouse)
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const x = useSpring(mx, { stiffness: 220, damping: 18, mass: 0.4 });
+  const y = useSpring(my, { stiffness: 220, damping: 18, mass: 0.4 });
+
+  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - (r.left + r.width / 2)) * 0.22);
+    my.set((e.clientY - (r.top + r.height / 2)) * 0.3);
+  };
+  const onLeave = () => {
+    mx.set(0);
+    my.set(0);
+  };
+
   return (
     <motion.a
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
-      className={`fat-sm inline-flex items-center gap-3 rounded-full px-7 py-4 text-sm tracking-wide transition-colors duration-500 ${variants[variant]} ${className}`}
+      style={{ x, y }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      whileTap={{ scale: 0.96 }}
+      className={`btn-shine group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-7 py-4 text-sm tracking-wide transition-colors duration-500 fat-sm ${variants[variant]} ${className}`}
     >
-      {children}
-      <ArrowUpRight size={16} strokeWidth={1.75} />
+      <span className="relative">{children}</span>
+      <ArrowUpRight
+        size={16}
+        strokeWidth={1.75}
+        className="relative transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      />
     </motion.a>
   );
 }

@@ -6,7 +6,7 @@ import { Section } from "./Section";
 import { Button } from "./Button";
 import { Faq } from "./Faq";
 import { Blog } from "./Blog";
-import { Item, Stagger } from "./Motion";
+import { Item, Reveal, Stagger } from "./Motion";
 import { photos, site, whatsappUrl } from "@/lib/site";
 
 export function AboutFooter() {
@@ -17,9 +17,9 @@ export function AboutFooter() {
           <Item className="md:col-span-5">
             <div className="relative mx-auto w-full md:max-w-md">
               <div aria-hidden className="absolute -bottom-3 -left-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-bottom-6 md:-left-6" />
-              <div className="relative h-[24vh] w-full overflow-hidden rounded-[2rem] md:h-[66vh]">
+              <Reveal className="relative h-[24vh] w-full overflow-hidden rounded-[2rem] md:h-[66vh]">
                 <Image src={photos.desk} alt="Dra. Sandra Hretzko em seu consultório" fill sizes="(min-width: 768px) 35vw, 90vw" className="object-cover object-[18%_16%]" />
-              </div>
+              </Reveal>
             </div>
           </Item>
           <div className="md:col-span-7">
