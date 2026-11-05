@@ -29,10 +29,10 @@ export function Blog() {
 
         <div className="mt-[3vh] grid gap-3 md:grid-cols-3 md:gap-6">
           {posts.map((p, i) => (
-            <Item key={p.slug} className={i > 1 ? "hidden md:block" : ""}>
+            <Item key={p.slug} className={`h-full ${i > 1 ? "hidden md:block" : ""}`}>
               <Link
                 href={`/blog/${p.slug}`}
-                className="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-3 transition-colors hover:bg-white/10 md:flex-col md:items-stretch md:p-4"
+                className="group flex h-full items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#E6CFA5]/60 hover:bg-white/10 md:min-h-[24rem] md:flex-col md:items-stretch md:p-4"
               >
                 <div className="relative h-[13vh] w-[28%] shrink-0 overflow-hidden rounded-xl md:h-[24vh] md:w-full">
                   <Image
@@ -43,10 +43,10 @@ export function Blog() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="min-w-0">
+                <div className="flex min-w-0 flex-1 flex-col">
                   <p className="eyebrow text-[#E6CFA5]">{p.category} · {p.readTime}</p>
-                  <h3 className="mt-1 text-[0.95rem] leading-tight tracking-tight md:mt-2 md:text-xl">{p.title}</h3>
-                  <p className="mt-2 hidden text-sm leading-snug text-white/75 md:block">{p.excerpt}</p>
+                  <h3 className="mt-1 line-clamp-2 text-[0.95rem] leading-tight tracking-tight md:mt-2 md:min-h-[2.5em] md:text-xl">{p.title}</h3>
+                  <p className="mt-2 hidden line-clamp-3 text-sm leading-snug text-white/75 md:block">{p.excerpt}</p>
                 </div>
               </Link>
             </Item>

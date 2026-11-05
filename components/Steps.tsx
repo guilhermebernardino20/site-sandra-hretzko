@@ -26,12 +26,12 @@ export function Steps() {
         </Item>
         <ol className="mt-[4vh] grid gap-0 md:grid-cols-4 md:gap-8">
           {steps.map((s, i) => (
-            <ItemLi key={s.title} className="flex gap-4 border-t border-white/30 py-[1.4vh] md:block md:pt-6">
-              <span className="fat w-11 shrink-0 text-3xl text-[#E6CFA5] md:w-auto md:text-5xl">0{i + 1}</span>
+            <ItemLi key={s.title} className="group flex gap-4 border-t border-white/30 py-[1.4vh] transition-all duration-500 hover:border-[#E6CFA5] md:block md:pt-6 md:hover:-translate-y-2">
+              <span className="fat block w-11 shrink-0 text-3xl text-[#E6CFA5] transition-all duration-500 group-hover:text-white md:w-auto md:text-5xl md:group-hover:translate-x-2">0{i + 1}</span>
               <div className="md:mt-4">
                 <h3 className="flex items-center gap-3 text-lg tracking-tight uppercase md:text-xl">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E6CFA5]/60">
-                    <s.icon size={15} strokeWidth={1.5} className="text-[#E6CFA5]" />
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E6CFA5]/60 transition-all duration-500 group-hover:rotate-[360deg] group-hover:bg-[#E6CFA5]">
+                    <s.icon size={15} strokeWidth={1.5} className="text-[#E6CFA5] transition-colors duration-500 group-hover:text-olive" />
                   </span>
                   {s.title}
                 </h3>

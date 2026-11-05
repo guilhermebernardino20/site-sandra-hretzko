@@ -83,3 +83,22 @@ html { scroll-behavior: smooth; }
   .animate-float, .animate-float-slow { animation: none; }
   .btn-shine::after { display: none; }
 }
+
+/* Sublinhado que se desenha no hover */
+.link-draw {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
+  transition: background-size 0.5s ease, color 0.3s;
+  padding-bottom: 3px;
+}
+.link-draw:hover { background-size: 100% 1px; }
+
+/* Cursor nativo continua; o anel é só um acompanhante */
+@media (pointer: coarse) { .cursor-only { display: none; } }
+
+/* Sublinhado que se desenha no hover */
+.link-draw {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
+  transition: background-size 0.5s ease, color 0.3s;
+  padding-bottom: 3px;
+}
+.link-draw:hover { background-size: 100% 1px; }

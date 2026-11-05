@@ -49,8 +49,8 @@ export function Experience() {
           </Item>
           <ul className="mt-[2.5vh] border-t border-wine/30">
             {pillars.map((p) => (
-              <ItemLi key={p.title} className="flex gap-4 border-b border-wine/30 py-[1.5vh] md:py-5">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-olive text-white">
+              <ItemLi key={p.title} className="group flex gap-4 border-b border-wine/30 py-[1.5vh] transition-all duration-500 hover:border-olive hover:pl-2 md:py-5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-olive text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-[360deg] group-hover:bg-wine">
                   <p.icon size={16} strokeWidth={1.5} />
                 </span>
                 <div>

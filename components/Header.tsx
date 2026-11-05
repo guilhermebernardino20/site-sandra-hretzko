@@ -60,36 +60,36 @@ export function Header() {
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed inset-x-0 top-3 z-50 px-4 md:px-8"
+        className={`fixed inset-x-0 z-50 px-4 transition-all duration-700 md:px-8 ${scrolled ? "top-2" : "top-3 md:top-4"}`}
       >
         <div
-          className={`relative mx-auto flex max-w-6xl items-center justify-between overflow-hidden rounded-full border backdrop-blur-xl transition-all duration-700 ${
+          className={`relative mx-auto flex items-center justify-between overflow-hidden rounded-full border backdrop-blur-xl transition-all duration-700 ${
             dark ? "border-white/20 bg-brown/55 text-white" : "border-brown/10 bg-white/70 text-brown"
           } ${
             scrolled
-              ? "py-1.5 pr-1.5 pl-2.5 shadow-[0_14px_44px_-14px_rgba(54,17,28,0.35)]"
-              : "py-2.5 pr-2 pl-3 shadow-[0_6px_24px_-12px_rgba(54,17,28,0.18)]"
+              ? "max-w-6xl py-1.5 pr-1.5 pl-2.5 shadow-[0_14px_44px_-14px_rgba(54,17,28,0.35)]"
+              : "max-w-6xl py-2.5 pr-2 pl-3 shadow-[0_8px_30px_-14px_rgba(54,17,28,0.2)] md:py-3.5 md:pr-3 md:pl-4"
           }`}
         >
           {/* Wordmark */}
           <a href="#inicio" onClick={() => setOpen(false)} className="group flex flex-col pl-3 leading-none" aria-label="Dra. Sandra Hretzko — início">
-            <span className="fat-sm text-[0.58rem] tracking-[0.14em] whitespace-nowrap uppercase sm:text-[0.74rem] sm:tracking-[0.2em]">
+            <span className={`fat-sm tracking-[0.14em] whitespace-nowrap uppercase transition-all duration-700 sm:tracking-[0.2em] ${scrolled ? "text-[0.58rem] sm:text-[0.74rem]" : "text-[0.58rem] sm:text-[0.8rem] xl:text-[0.88rem]"}`}>
               Dra. Sandra <span className={`transition-colors duration-500 ${dark ? "text-[#E6CFA5]" : "text-wine group-hover:text-olive"}`}>Hretzko</span>
             </span>
-            <span className={`mt-1.5 flex items-center gap-2 text-[0.46rem] tracking-[0.26em] uppercase transition-colors duration-700 ${dark ? "text-white/70" : "text-olive"} sm:text-[0.54rem] sm:tracking-[0.34em]`}>
+            <span className={`flex items-center gap-2 tracking-[0.26em] uppercase transition-all duration-700 sm:tracking-[0.34em] ${dark ? "text-white/70" : "text-olive"} ${scrolled ? "mt-1.5 text-[0.46rem] sm:text-[0.54rem]" : "mt-1.5 text-[0.46rem] sm:text-[0.58rem]"}`}>
               <span className={`block h-px w-4 transition-all duration-500 group-hover:w-7 ${dark ? "bg-white/60" : "bg-olive/60"}`} />
               Medicina estética
             </span>
           </a>
 
-          <nav aria-label="Principal" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
+          <nav aria-label="Principal" className="mx-2 hidden min-w-0 flex-1 items-center justify-center lg:flex xl:mx-4">
             {desktopLinks.map((l) => {
               const on = active === l.id;
               return (
                 <a
                   key={l.id}
                   href={`#${l.id}`}
-                  className={`relative rounded-full px-4 py-2 text-[0.68rem] tracking-[0.2em] uppercase transition-colors duration-500 ${
+                  className={`relative rounded-full uppercase transition-all duration-700 tracking-[0.14em] xl:tracking-[0.2em] ${scrolled ? "px-2.5 py-2 text-[0.64rem] xl:px-4 xl:text-[0.68rem]" : "px-2.5 py-2 text-[0.66rem] xl:px-4 xl:text-[0.72rem]"} ${
                     dark ? (on ? "text-white" : "text-white/70 hover:text-white") : on ? "text-wine" : "text-brown/75 hover:text-wine"
                   }`}
                 >
@@ -111,7 +111,7 @@ export function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`fat-sm group flex items-center gap-2 rounded-full py-2 pr-2 pl-3.5 text-[0.6rem] tracking-[0.12em] uppercase transition-colors duration-500 sm:pl-5 sm:text-[0.68rem] sm:tracking-[0.18em] ${
+              className={`fat-sm group flex items-center gap-2 rounded-full pr-2 pl-3.5 tracking-[0.12em] uppercase transition-all duration-700 sm:pl-5 sm:tracking-[0.18em] ${scrolled ? "py-2 text-[0.6rem] sm:text-[0.68rem]" : "py-2 text-[0.6rem] sm:py-2.5 sm:text-[0.72rem]"} ${
                 dark ? "bg-white text-brown hover:bg-[#E6CFA5]" : "bg-brown text-white hover:bg-wine"
               }`}
             >

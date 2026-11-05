@@ -88,7 +88,7 @@ export function Results() {
             >
               {slides.map((s, i) =>
                 s.kind === "photo" ? (
-                  <figure key={i} className="w-[54vw] shrink-0 select-none md:w-[20rem]">
+                  <figure key={i} className="group w-[54vw] shrink-0 select-none md:w-[20rem]">
                     <div className="relative h-[30vh] overflow-hidden rounded-2xl md:h-[44vh]">
                       <Image
                         src={img(s.src, 800)}
@@ -96,7 +96,7 @@ export function Results() {
                         fill
                         sizes="(min-width: 768px) 20rem, 54vw"
                         draggable={false}
-                        className="pointer-events-none object-cover"
+                        className="pointer-events-none object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
                       />
                       <span className="eyebrow absolute top-3 left-3 rounded-full bg-white/80 px-3 py-1.5 !text-[0.55rem] text-brown backdrop-blur">
                         {s.tag}

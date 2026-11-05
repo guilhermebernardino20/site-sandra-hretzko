@@ -55,7 +55,7 @@ export function Faq() {
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="fat-sm flex w-full items-center justify-between gap-4 py-[1.6vh] text-left text-[0.95rem] md:py-5 md:text-xl"
+                    className="fat-sm flex w-full items-center justify-between gap-4 py-[1.6vh] text-left transition-all duration-300 hover:pl-2 hover:text-[#E6CFA5] text-[0.95rem] md:py-5 md:text-xl"
                   >
                     {f.q}
                     <motion.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.4 }} className="shrink-0 text-[#E6CFA5]">

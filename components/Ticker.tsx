@@ -16,7 +16,7 @@ export function Ticker() {
     </span>
   );
   return (
-    <div aria-hidden className="absolute inset-x-0 bottom-0 overflow-hidden bg-olive py-2.5 whitespace-nowrap text-white">
+    <div aria-hidden className="relative z-10 mt-auto w-full shrink-0 overflow-hidden bg-olive py-2.5 whitespace-nowrap text-white">
       <motion.div
         className="flex w-max"
         animate={{ x: ["0%", "-50%"] }}

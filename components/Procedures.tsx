@@ -44,12 +44,12 @@ export function Procedures() {
 
         <ul className="mt-[3vh] grid gap-[2vh] md:grid-cols-2 md:gap-12">
           {procedures.map((p) => (
-            <ItemLi key={p.name} className="grid grid-cols-[28%_1fr] gap-4 border-t border-wine/40 pt-[2vh] md:grid-cols-1 md:gap-0 md:pt-5">
+            <ItemLi key={p.name} className="group relative grid grid-cols-[28%_1fr] gap-4 border-t border-wine/40 pt-[2vh] md:grid-cols-1 md:gap-0 md:pt-5">
               <Reveal className="relative h-full min-h-[18vh] overflow-hidden rounded-2xl md:h-[26vh] md:min-h-0">
-                <Image src={img(p.image, 800)} alt={p.name} fill sizes="(min-width: 768px) 45vw, 30vw" className="object-cover" />
+                <Image src={img(p.image, 800)} alt={p.name} fill sizes="(min-width: 768px) 45vw, 30vw" className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110" />
               </Reveal>
               <div className="md:mt-5">
-                <h3 className="text-xl tracking-tighter uppercase md:text-3xl">{p.name}</h3>
+                <h3 className="text-xl tracking-tighter uppercase transition-all duration-500 group-hover:translate-x-2 group-hover:text-wine md:text-3xl">{p.name}</h3>
                 <p className="mt-1 hidden text-base md:block">{p.lead}</p>
                 <dl className="mt-1.5 space-y-1.5 text-[0.8rem] leading-snug md:mt-4 md:space-y-3 md:text-sm">
                   {[
@@ -60,7 +60,7 @@ export function Procedures() {
                     const I = Icon as typeof Clock;
                     return (
                       <div key={k as string} className={`gap-2.5 ${k === "Não fazemos" ? "hidden md:flex" : "flex"}`}>
-                        <I size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-olive" />
+                        <I size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-olive transition-transform duration-500 group-hover:scale-125" />
                         <div>
                           <dt className="eyebrow fat-sm !text-[0.55rem] text-olive">{k as string}</dt>
                           <dd>{v as string}</dd>
@@ -73,7 +73,7 @@ export function Procedures() {
                   href={waLink(`Olá, Dra. Sandra! Gostaria de saber mais sobre ${p.name}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="fat-sm mt-4 hidden items-center gap-2 text-sm text-wine underline underline-offset-4 md:inline-flex"
+                  className="fat-sm link-draw mt-4 hidden items-center gap-2 text-sm text-wine md:inline-flex"
                 >
                   Perguntar sobre {p.name.toLowerCase()} →
                 </a>

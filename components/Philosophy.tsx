@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Section } from "./Section";
 import { Item, ItemLi, Reveal, Stagger } from "./Motion";
+import { Tilt } from "./Tilt";
 import { img, images } from "@/lib/site";
 
 const principles = ["Anatomia antes da técnica", "Menos, e melhor indicado", "Você, apenas descansada"];
@@ -31,7 +32,7 @@ export function Philosophy() {
           </Item>
           <ul className="mt-[3vh] grid gap-2 sm:grid-cols-3 sm:gap-5">
             {principles.map((p, i) => (
-              <ItemLi key={p} className="flex items-baseline gap-3 border-t border-white/30 pt-3">
+              <ItemLi key={p} className="group flex cursor-default items-baseline gap-3 border-t border-white/30 pt-3 transition-all duration-500 hover:border-[#E6CFA5] hover:pl-2">
                 <span className="eyebrow !text-[0.6rem] text-[#E6CFA5]">0{i + 1}</span>
                 <span className="fat-sm text-sm">{p}</span>
               </ItemLi>
@@ -39,7 +40,7 @@ export function Philosophy() {
           </ul>
         </div>
         <Item className="hidden md:col-span-5 md:block">
-          <Reveal className="relative h-[62vh] overflow-hidden rounded-[2rem]">
+          <Tilt><Reveal className="relative h-[62vh] overflow-hidden rounded-[2rem]">
             <Image
               src={img(images.philosophy, 1000)}
               alt="Retrato de mulher com pele natural"
@@ -47,7 +48,7 @@ export function Philosophy() {
               sizes="35vw"
               className="object-cover"
             />
-          </Reveal>
+          </Reveal></Tilt>
         </Item>
       </Stagger>
     </Section>
