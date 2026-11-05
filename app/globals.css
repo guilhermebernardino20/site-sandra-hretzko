@@ -24,6 +24,8 @@ body {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   font-synthesis: none;
+  -webkit-text-stroke: 0.2px currentColor; /* reforça o corpo de texto */
+  text-size-adjust: 100%;
   overflow: hidden;
 }
 

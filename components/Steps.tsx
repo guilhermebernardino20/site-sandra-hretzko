@@ -27,7 +27,7 @@ export function Steps() {
         <ol className="mt-[4vh] grid gap-0 md:grid-cols-4 md:gap-8">
           {steps.map((s, i) => (
             <ItemLi key={s.title} className="flex gap-4 border-t border-white/30 py-[1.4vh] md:block md:pt-6">
-              <span className="fat text-3xl text-[#E6CFA5] md:text-5xl">0{i + 1}</span>
+              <span className="fat w-11 shrink-0 text-3xl text-[#E6CFA5] md:w-auto md:text-5xl">0{i + 1}</span>
               <div className="md:mt-4">
                 <h3 className="flex items-center gap-3 text-lg tracking-tight uppercase md:text-xl">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E6CFA5]/60">
@@ -35,7 +35,7 @@ export function Steps() {
                   </span>
                   {s.title}
                 </h3>
-                <p className="mt-1 text-[0.8rem] leading-snug text-white/85 md:text-sm">{s.text}</p>
+                <p className="mt-1 text-[0.82rem] leading-snug text-white/90 md:text-sm">{s.text}</p>
               </div>
             </ItemLi>
           ))}

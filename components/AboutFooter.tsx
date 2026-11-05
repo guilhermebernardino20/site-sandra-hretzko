@@ -24,7 +24,7 @@ export function AboutFooter() {
           <div className="md:col-span-7">
             <Item>
               <p className="eyebrow mb-[1.5vh] text-olive">Sobre a Dra. Sandra</p>
-              <h2 className="text-[clamp(2rem,min(10vw,7vh),5rem)] leading-[0.95] tracking-tighter uppercase">
+              <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),5rem)] leading-[0.95] tracking-tighter uppercase">
                 Ciência com <span className="text-wine">propósito.</span>
               </h2>
               <p className="mt-[2.5vh] text-[0.95rem] leading-relaxed text-brown md:text-xl">
@@ -60,11 +60,14 @@ export function AboutFooter() {
 
       <Faq />
 
-      <Section id="contato" theme="brown" className="!min-h-[80vh]">
+      <Section id="contato" theme="brown">
         <Stagger className="flex flex-col gap-[4vh]">
           <Item>
-            <h2 className="text-[clamp(2.2rem,min(12vw,9vh),7rem)] leading-[0.92] tracking-tighter uppercase">
-              Pronta para se <span className="text-[#E6CFA5]">reconhecer?</span>
+            <h2 className="text-[clamp(2rem,min(9.4vw,8vh),7rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
+              <span className="block">Pronta para</span>
+              <span className="block">
+                se <span className="text-[#E6CFA5]">reconhecer?</span>
+              </span>
             </h2>
             <div className="mt-[3vh]">
               <Button href={whatsappUrl} variant="light">
@@ -88,7 +91,7 @@ export function AboutFooter() {
                 <MapPin size={15} strokeWidth={1.5} /> {site.address.join(" · ")}
               </li>
             </ul>
-            <div className="mt-[2.5vh] flex flex-col gap-1 text-[0.62rem] tracking-[0.18em] text-white/60 uppercase md:flex-row md:justify-between">
+            <div className="mt-[2.5vh] flex flex-col gap-1 text-[0.68rem] tracking-[0.16em] text-white/75 uppercase md:flex-row md:justify-between">
               <span>
                 {site.name} · {site.crm}
               </span>

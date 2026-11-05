@@ -51,7 +51,7 @@ export function Procedures() {
               <div className="md:mt-5">
                 <h3 className="text-xl tracking-tighter uppercase md:text-3xl">{p.name}</h3>
                 <p className="mt-1 hidden text-base md:block">{p.lead}</p>
-                <dl className="mt-1.5 space-y-1.5 text-[0.75rem] leading-snug md:mt-4 md:space-y-3 md:text-sm">
+                <dl className="mt-1.5 space-y-1.5 text-[0.8rem] leading-snug md:mt-4 md:space-y-3 md:text-sm">
                   {[
                     [Clock, "Ação", p.action],
                     [Hourglass, "Duração", p.duration],
@@ -59,11 +59,11 @@ export function Procedures() {
                   ].map(([Icon, k, v]) => {
                     const I = Icon as typeof Clock;
                     return (
-                      <div key={k as string} className="flex gap-2.5">
+                      <div key={k as string} className={`gap-2.5 ${k === "Não fazemos" ? "hidden md:flex" : "flex"}`}>
                         <I size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-olive" />
                         <div>
                           <dt className="eyebrow fat-sm !text-[0.55rem] text-olive">{k as string}</dt>
-                          <dd className={k === "Não fazemos" ? "hidden md:block" : ""}>{v as string}</dd>
+                          <dd>{v as string}</dd>
                         </div>
                       </div>
                     );
