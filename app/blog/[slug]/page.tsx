@@ -82,7 +82,7 @@ export default async function PostPage({ params }: Props) {
                 key={i}
                 className={
                   lead
-                    ? "text-lg leading-relaxed first-letter:float-left first-letter:mr-3 first-letter:text-6xl first-letter:leading-[0.85] first-letter:text-wine md:text-2xl"
+                    ? "text-lg leading-relaxed first-letter:float-left first-letter:mr-3 first-letter:text-6xl first-letter:leading-[0.85] first-letter:text-wine first-letter:[-webkit-text-stroke:2px_currentColor] md:text-2xl"
                     : "mt-5 text-base leading-[1.75] md:text-lg"
                 }
               >

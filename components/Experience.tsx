@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Eye, Home, Hourglass } from "lucide-react";
 import { Section } from "./Section";
 import { Item, ItemLi, Reveal, Stagger } from "./Motion";
-import { img, images } from "@/lib/site";
+import { photos } from "@/lib/site";
 
 const pillars = [
   { icon: Hourglass, title: "Tempo de consulta", text: "Sem relógio na parede: ouvimos a sua história antes de olhar o seu rosto." },
@@ -21,20 +21,20 @@ export function Experience() {
             <div aria-hidden className="absolute -top-3 -left-3 h-[80%] w-[80%] rounded-[2rem] bg-olive/15 md:-top-6 md:-left-6" />
             <Reveal className="relative h-[20vh] w-[78%] overflow-hidden rounded-[2rem] md:h-[56vh]">
               <Image
-                src={img(images.experience, 1000)}
-                alt="Ambiente acolhedor do consultório"
+                src={photos.desk}
+                alt="Mesa do consultório com o mapa de anatomia facial"
                 fill
                 sizes="(min-width: 768px) 35vw, 70vw"
-                className="object-cover"
+                className="object-cover object-[100%_66%]"
               />
             </Reveal>
             <div className="absolute right-0 bottom-0 h-[13vh] w-[40%] overflow-hidden rounded-2xl border-4 border-white md:-bottom-8 md:h-[26vh] md:w-[44%] md:border-8">
               <Image
-                src={img(images.detail, 600)}
-                alt="Detalhe de cuidado e acolhimento"
+                src={photos.desk}
+                alt="Detalhe do atendimento no consultório"
                 fill
                 sizes="(min-width: 768px) 18vw, 40vw"
-                className="object-cover"
+                className="object-cover object-[100%_62%] [transform:scale(2.7)_translate(-27%,-4%)]"
               />
             </div>
           </div>

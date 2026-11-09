@@ -15,7 +15,7 @@ export function FloatingCTA() {
       animate={{ scale: 1 }}
       transition={{ delay: 1.2, type: "spring", stiffness: 200, damping: 15 }}
       whileHover={{ scale: 1.08 }}
-      className="fixed right-4 bottom-4 z-[42] flex h-14 w-14 items-center justify-center rounded-full bg-olive text-white md:right-8 md:bottom-8"
+      className="fixed right-4 bottom-4 z-[42] flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/90 bg-olive text-white shadow-[0_10px_30px_-8px_rgba(54,17,28,0.55)] md:right-8 md:bottom-8"
     >
       <motion.span
         className="absolute inset-0 rounded-full bg-olive"

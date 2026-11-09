@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { formatDate, posts } from "@/lib/posts";
+import { posts } from "@/lib/posts";
 import { img } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function BlogIndex() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image src={img(p.image, 800)} alt="" fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <p className="eyebrow mt-4 text-olive">{p.category} · {formatDate(p.date)}</p>
+            <p className="eyebrow mt-4 text-olive">{p.category} · {p.readTime}</p>
             <h2 className="mt-1 line-clamp-2 min-h-[2.5em] text-xl leading-tight tracking-tight">{p.title}</h2>
             <p className="mt-2 line-clamp-3 text-sm leading-snug">{p.excerpt}</p>
           </Link>

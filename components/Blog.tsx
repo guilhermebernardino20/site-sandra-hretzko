@@ -44,8 +44,8 @@ export function Blog() {
                   />
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col">
-                  <p className="eyebrow text-[#E6CFA5]">{p.category} · {p.readTime}</p>
-                  <h3 className="mt-1 line-clamp-2 text-[0.95rem] leading-tight tracking-tight md:mt-2 md:min-h-[2.5em] md:text-xl">{p.title}</h3>
+                  <p className="eyebrow whitespace-nowrap !text-[0.6rem] text-[#E6CFA5] md:!text-[0.7rem]">{p.category} · {p.readTime}</p>
+                  <h3 className="mt-1 line-clamp-3 min-h-[3.3em] text-[0.92rem] leading-tight tracking-tight md:mt-2 md:line-clamp-2 md:min-h-[2.5em] md:text-xl">{p.title}</h3>
                   <p className="mt-2 hidden line-clamp-3 text-sm leading-snug text-white/75 md:block">{p.excerpt}</p>
                 </div>
               </Link>

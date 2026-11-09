@@ -43,7 +43,7 @@ export function AboutFooter() {
                 Ciência com <span className="text-wine">propósito.</span>
               </h2>
               <p className="mt-[2.5vh] text-[0.92rem] leading-relaxed text-brown md:text-lg">
-                Cirurgiã-dentista com atuação em Prótese, Dentística e Harmonização Orofacial.{" "}
+                Cirurgiã-dentista com atuação em Prótese, Dentística e harmonização orofacial.{" "}
                 <span className="hidden md:inline">
                   Depois de anos reabilitando sorrisos, percebeu que muitos pacientes ainda não se sentiam satisfeitos com a
                   própria imagem no espelho — e foi buscar a harmonização facial, sempre respeitando os traços de cada pessoa.

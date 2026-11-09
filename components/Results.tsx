@@ -95,8 +95,8 @@ export function Results() {
                     <div key={i} className={`${base} bg-white text-brown`}>
                       <span className="eyebrow w-fit rounded-full bg-wine/10 px-3 py-1.5 !text-[0.55rem] text-wine">{s.tag}</span>
                       <div>
-                        <p className="fat flex items-baseline gap-2 leading-none text-wine">
-                          <span className="text-[3.2rem] tracking-tighter md:text-[4.5rem]">{s.big}</span>
+                        <p className="fat flex items-baseline gap-2 leading-none whitespace-nowrap text-wine">
+                          <span className="text-[2.9rem] tracking-tighter md:text-[3.6rem]">{s.big}</span>
                           <span className="text-lg md:text-2xl">{s.unit}</span>
                         </p>
                         <p className="eyebrow mt-2 !text-[0.58rem] text-olive">{s.label}</p>
