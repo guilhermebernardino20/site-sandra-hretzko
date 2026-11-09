@@ -1,6 +1,6 @@
 import { images } from "./site";
 
-// TODO: textos de exemplo — a Dra. Sandra deve revisar/substituir cada artigo antes de publicar.
+// TODO: textos de exemplo — a Dra. Sandra deve revisar ou substituir cada artigo antes de publicar.
 export type Post = {
   slug: string;
   title: string;
@@ -22,10 +22,10 @@ export const posts: Post[] = [
     readTime: "4 min",
     image: images.philosophy,
     body: [
-      { type: "p", text: "Quando alguém diz que quer um resultado natural, quase sempre quer dizer: 'não quero que percebam que fiz algo'. E isso é totalmente possível — desde que o plano seja pensado para o seu rosto, e não para uma tendência." },
+      { type: "p", text: "Quando alguém diz que quer um resultado natural, quase sempre quer dizer: 'não quero que percebam que fiz algo'. E isso é totalmente possível, desde que o plano seja pensado para o seu rosto e não para uma tendência." },
       { type: "h2", text: "1. Começa na conversa, não na agulha" },
       { type: "p", text: "Uma boa avaliação ouve primeiro o que incomoda e o que você gosta em si. A indicação nasce daí, e nem sempre o que você pediu é o que o seu rosto precisa." },
-      { type: "quote", text: "O melhor resultado é aquele em que ninguém percebe o procedimento — só percebem que você está bem." },
+      { type: "quote", text: "O melhor resultado é aquele em que ninguém percebe o procedimento, só percebem que você está bem." },
       { type: "h2", text: "2. Proporção vale mais que volume" },
       { type: "p", text: "Rostos harmoniosos são feitos de relações entre as partes. Corrigir um ponto isolado sem olhar o conjunto é o caminho mais curto para o aspecto artificial." },
       { type: "h2", text: "3. Saber a hora de parar" },

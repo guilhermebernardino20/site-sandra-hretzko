@@ -12,7 +12,7 @@ import { waLink } from "@/lib/site";
 const faqs = [
   {
     q: "Vou ficar com aspecto artificial?",
-    a: "O objetivo é o oposto. Só indicamos o que respeita a sua anatomia e a sua expressão — e, quando o melhor é não fazer, nós dizemos.",
+    a: "O objetivo é o oposto. Só indicamos o que respeita a sua anatomia e a sua expressão. E, quando o melhor é não fazer, nós dizemos.",
   },
   {
     q: "Como é a avaliação?",

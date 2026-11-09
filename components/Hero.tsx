@@ -29,8 +29,8 @@ function SpinningBadge() {
       <defs>
         <path id="circ" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" />
       </defs>
-      <text className="fill-white" fontSize="11" letterSpacing="3.2" style={{ textTransform: "uppercase" }}>
-        <textPath href="#circ">Avaliação personalizada · sem pressa ·</textPath>
+      <text className="fill-white" fontSize="10.5" style={{ textTransform: "uppercase" }}>
+        <textPath href="#circ" textLength="262" lengthAdjust="spacing">Avaliação personalizada ✦ sem pressa ✦</textPath>
       </text>
       <path d="M60 48 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" className="fill-[#E6CFA5]" />
     </motion.svg>
@@ -57,8 +57,6 @@ export function Hero() {
   const ry = useTransform(sx, (v) => v * 22);
   const rx = useTransform(sy, (v) => v * -16);
   const glareX = useTransform(sx, (v) => `${v * 160}%`);
-  const titleX = useTransform(sx, (v) => v * -14);
-  const titleY = useTransform(sy, (v) => v * -8);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -80,7 +78,7 @@ export function Hero() {
               Harmonização orofacial natural
             </p>
           </Item>
-          <motion.h1 style={{ x: titleX, y: titleY }} className="text-[clamp(2rem,min(10.8vw,8vh),5.4rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
+          <motion.h1 className="text-[clamp(2rem,min(10.8vw,8vh),5.4rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
             <MaskLine>Realçar</MaskLine>
             <MaskLine>
               o que já é <span className="text-wine">seu</span>

@@ -9,7 +9,7 @@ import { whatsappUrl } from "@/lib/site";
 const steps = [
   { icon: CalendarCheck, title: "Agende", text: "Um toque no WhatsApp e escolhemos o melhor horário." },
   { icon: Eye, title: "Avaliação", text: "Consulta longa, atenção ao olhar e escuta da sua queixa." },
-  { icon: ClipboardList, title: "Plano", text: "Só o que faz sentido para você — inclusive esperar." },
+  { icon: ClipboardList, title: "Plano", text: "Só o que faz sentido para você, inclusive esperar." },
   { icon: Sparkles, title: "Resultado", text: "Você, descansada, e se reconhecendo no espelho." },
 ];
 

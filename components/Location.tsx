@@ -19,8 +19,8 @@ const options = [
 export function Location() {
   return (
     <Section id="como-chegar" theme="white">
-      <Stagger className="grid items-center gap-[3vh] md:grid-cols-12 md:gap-14">
-        <div className="md:col-span-5">
+      <Stagger className="grid items-center gap-[3vh] md:grid-cols-12 md:gap-8">
+        <div className="md:col-span-4">
           <Item>
             <p className="eyebrow mb-[1.5vh] text-olive">Como chegar</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
@@ -36,7 +36,7 @@ export function Location() {
                   </span>
                   <div>
                     <p className="eyebrow !text-[0.55rem] text-olive">{x.label}</p>
-                    <p className="fat-sm text-[0.9rem] leading-snug md:text-base">{x.value}</p>
+                    <p className="fat-sm text-left text-[0.9rem] leading-snug md:text-base">{x.value}</p>
                   </div>
                 </li>
               ))}
@@ -61,7 +61,7 @@ export function Location() {
           </Item>
         </div>
 
-        <Item className="md:col-span-7">
+        <Item className="md:col-span-7 md:col-start-6">
           <div className="relative">
             <div aria-hidden className="absolute -right-3 -bottom-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-right-6 md:-bottom-6" />
             <Reveal className="relative h-[21vh] w-full overflow-hidden rounded-[2rem] shadow-[0_24px_50px_-25px_rgba(54,17,28,0.5)] md:h-[58vh]">

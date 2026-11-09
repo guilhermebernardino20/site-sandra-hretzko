@@ -4,6 +4,7 @@ import { FloatingCTA } from "@/components/FloatingCTA";
 import { Hero } from "@/components/Hero";
 import { Philosophy } from "@/components/Philosophy";
 import { Procedures } from "@/components/Procedures";
+import { Protocol } from "@/components/Protocol";
 import { Steps } from "@/components/Steps";
 import { Experience } from "@/components/Experience";
 import { Results } from "@/components/Results";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Philosophy />
         <Procedures />
+        <Protocol />
         <Steps />
         <Experience />
         <Results />

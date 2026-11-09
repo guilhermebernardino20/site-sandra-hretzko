@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { EditorialPhoto } from "@/components/EditorialPhoto";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Clock } from "lucide-react";
@@ -16,7 +17,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost((await params).slug);
   if (!post) return {};
-  return { title: `${post.title} — Dra. Sandra Hretzko`, description: post.excerpt };
+  return { title: `${post.title} | Dra. Sandra Hretzko`, description: post.excerpt };
 }
 
 export default async function PostPage({ params }: Props) {
@@ -56,9 +57,7 @@ export default async function PostPage({ params }: Props) {
 
       <article className="relative mx-auto max-w-5xl px-6">
         {/* Imagem sobreposta à capa */}
-        <div className="relative mx-auto -mt-20 aspect-[16/9] max-w-3xl overflow-hidden rounded-3xl md:-mt-28 md:aspect-[21/9] shadow-2xl shadow-brown/20">
-          <Image src={img(post.image, 1400)} alt="" fill priority sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
-        </div>
+        <EditorialPhoto id={post.image} w={1400} priority sizes="(min-width: 768px) 768px, 100vw" className="relative mx-auto -mt-20 aspect-[16/9] max-w-3xl rounded-sm shadow-2xl shadow-brown/20 md:-mt-28 md:aspect-[21/9]" />
 
         <div className="mx-auto mt-10 max-w-3xl md:mt-14">
           {post.body.map((b, i) => {
@@ -118,9 +117,7 @@ export default async function PostPage({ params }: Props) {
         <div className="mt-5 grid gap-6 md:grid-cols-2">
           {related.map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}`} className="group block">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
-                <Image src={img(p.image, 700)} alt="" fill sizes="(min-width: 768px) 370px, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
+              <EditorialPhoto id={p.image} w={700} sizes="(min-width: 768px) 370px, 100vw" className="aspect-[16/9] rounded-sm" />
               <p className="eyebrow mt-3 text-olive">{p.category} · {p.readTime}</p>
               <h3 className="mt-1 text-lg leading-tight tracking-tight">{p.title}</h3>
             </Link>

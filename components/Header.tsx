@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import { whatsappUrl } from "@/lib/site";
 import { useActiveSection } from "@/lib/useActiveSection";
 
-export const sectionIds = ["inicio", "filosofia", "procedimentos", "como-funciona", "experiencia", "resultados", "sobre", "blog", "duvidas", "como-chegar", "contato"];
+export const sectionIds = ["inicio", "filosofia", "procedimentos", "protocolo", "como-funciona", "experiencia", "resultados", "sobre", "blog", "duvidas", "como-chegar", "contato"];
 
 const links = [
   { id: "filosofia", label: "Filosofia" },
   { id: "procedimentos", label: "Procedimentos" },
+  { id: "protocolo", label: "Protocolo Sandra" },
   { id: "como-funciona", label: "Como funciona" },
   { id: "experiencia", label: "Experiência" },
   { id: "resultados", label: "Resultados" },
@@ -24,7 +25,7 @@ const desktopLinks = links.filter((l) => ["filosofia", "procedimentos", "experie
 
 const EASE = [0.76, 0, 0.24, 1] as const;
 // Seções de fundo escuro: a barra troca para vidro escuro e texto claro
-const darkSections = new Set(["filosofia", "como-funciona", "resultados", "blog", "duvidas", "contato"]);
+const darkSections = new Set(["filosofia", "protocolo", "como-funciona", "resultados", "blog", "duvidas", "contato"]);
 
 export function Header() {
   const active = useActiveSection(sectionIds);
@@ -73,7 +74,7 @@ export function Header() {
           }`}
         >
           {/* Wordmark */}
-          <a href="#inicio" onClick={() => setOpen(false)} className="group flex flex-col pl-3 leading-none" aria-label="Dra. Sandra Hretzko — início">
+          <a href="#inicio" onClick={() => setOpen(false)} className="group flex flex-col pl-3 leading-none" aria-label="Dra. Sandra Hretzko, início">
             <span className={`fat-sm tracking-[0.14em] whitespace-nowrap uppercase transition-all duration-700 sm:tracking-[0.2em] ${scrolled ? "text-[0.58rem] sm:text-[0.74rem]" : "text-[0.58rem] sm:text-[0.8rem] xl:text-[0.88rem]"}`}>
               Dra. Sandra <span className={`transition-colors duration-500 ${dark ? "text-[#E6CFA5]" : "text-wine group-hover:text-olive"}`}>Hretzko</span>
             </span>

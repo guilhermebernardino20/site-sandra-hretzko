@@ -102,3 +102,18 @@ html { scroll-behavior: smooth; }
   padding-bottom: 3px;
 }
 .link-draw:hover { background-size: 100% 1px; }
+
+/* Textos corridos justificados (rótulos, títulos e legendas curtas ficam à esquerda) */
+main p,
+article p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+main .eyebrow,
+article .eyebrow,
+main figcaption p,
+main footer p {
+  text-align: left;
+  hyphens: manual;
+}

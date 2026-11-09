@@ -8,7 +8,7 @@ import { photos } from "@/lib/site";
 
 const pillars = [
   { icon: Hourglass, title: "Tempo de consulta", text: "Sem relógio na parede: ouvimos a sua história antes de olhar o seu rosto." },
-  { icon: Eye, title: "O detalhe do olhar", text: "Assimetrias, expressões e proporções, observadas com calma — onde mora a naturalidade." },
+  { icon: Eye, title: "O detalhe do olhar", text: "Assimetrias, expressões e proporções, observadas com calma, onde mora a naturalidade." },
   { icon: Home, title: "Receber em casa", text: "Ambiente acolhedor e seguro, para você chegar tranquila e sair ainda mais você." },
 ];
 

@@ -43,10 +43,10 @@ export function AboutFooter() {
                 Ciência com <span className="text-wine">propósito.</span>
               </h2>
               <p className="mt-[2.5vh] text-[0.92rem] leading-relaxed text-brown md:text-lg">
-                Cirurgiã-dentista com atuação em Prótese, Dentística e harmonização orofacial.{" "}
+                Cirurgiã-dentista formada pela PUC-PR em 1998.{" "}
                 <span className="hidden md:inline">
                   Depois de anos reabilitando sorrisos, percebeu que muitos pacientes ainda não se sentiam satisfeitos com a
-                  própria imagem no espelho — e foi buscar a harmonização facial, sempre respeitando os traços de cada pessoa.
+                  própria imagem no espelho, e foi buscar a harmonização facial, sempre respeitando os traços de cada pessoa.
                 </span>
               </p>
               <blockquote className="mt-[2.5vh] hidden border-l-2 border-wine pl-5 md:block">
@@ -55,10 +55,9 @@ export function AboutFooter() {
               </blockquote>
             </Item>
             <Item>
-              <ol className="mt-[3vh] grid grid-cols-3 gap-3 md:gap-6">
+              <ol className="mt-[3vh] grid grid-cols-2 gap-3 md:gap-6">
                 {[
                   ["1998", "Odontologia", "PUC-PR"],
-                  ["Atuação", "Prótese e Dentística", "Reabilitação do sorriso"],
                   ["Hoje", "Harmonização orofacial", "Naturalidade e sutileza"],
                 ].map(([k, t, d]) => (
                   <li key={k} className="group relative border-t border-wine/30 pt-3 transition-colors duration-500 hover:border-wine">

@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Section } from "./Section";
 import { Item, Stagger } from "./Motion";
 import { posts } from "@/lib/posts";
-import { img } from "@/lib/site";
+import { EditorialPhoto } from "./EditorialPhoto";
 
 export function Blog() {
   return (
@@ -34,15 +33,7 @@ export function Blog() {
                 href={`/blog/${p.slug}`}
                 className="group flex h-full items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#E6CFA5]/60 hover:bg-white/10 md:min-h-[24rem] md:flex-col md:items-stretch md:p-4"
               >
-                <div className="relative h-[13vh] w-[28%] shrink-0 overflow-hidden rounded-xl md:h-[24vh] md:w-full">
-                  <Image
-                    src={img(p.image, 700)}
-                    alt=""
-                    fill
-                    sizes="(min-width: 768px) 30vw, 30vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
+                <EditorialPhoto id={p.image} n={i + 1} w={700} sizes="(min-width: 768px) 30vw, 30vw" className="h-[13vh] w-[28%] shrink-0 rounded-sm md:h-[24vh] md:w-full" />
                 <div className="flex min-w-0 flex-1 flex-col">
                   <p className="eyebrow whitespace-nowrap !text-[0.6rem] text-[#E6CFA5] md:!text-[0.7rem]">{p.category} · {p.readTime}</p>
                   <h3 className="mt-1 line-clamp-3 min-h-[3.3em] text-[0.92rem] leading-tight tracking-tight md:mt-2 md:line-clamp-2 md:min-h-[2.5em] md:text-xl">{p.title}</h3>

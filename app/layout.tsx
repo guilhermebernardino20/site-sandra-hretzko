@@ -13,13 +13,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Dra. Sandra Hretzko — Realçar o que já é seu",
+    default: "Dra. Sandra Hretzko | Realçar o que já é seu",
     template: "%s",
   },
   description: "Harmonização orofacial natural em Pinhais: botox, preenchimentos, fios faciais e bioestimuladores com indicação precisa.",
   keywords: ["harmonização orofacial", "harmonização facial", "botox", "preenchimento labial", "fios faciais", "bioestimuladores", "Pinhais", "Curitiba", "dentista"],
   openGraph: {
-    title: "Dra. Sandra Hretzko — Realçar o que já é seu",
+    title: "Dra. Sandra Hretzko | Realçar o que já é seu",
     description: "Estética unida à naturalidade e ao propósito. Agende sua avaliação.",
     locale: "pt_BR",
     type: "website",

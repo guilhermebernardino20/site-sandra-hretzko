@@ -10,7 +10,7 @@ export const site = {
   instagram: "drasandrahretzko",
   cro: "", // TODO: número e UF do CRO (ex.: "CRO-PR 00000") — não foi informado no formulário
   cnpj: "34.296.794/0001-02",
-  address: ["Rua João Leopoldo Jacomel, 12066", "Pinhais — PR"], // TODO: CEP, bairro, sala e ponto de referência
+  address: ["Rua João Leopoldo Jacomel, 12066", "Pinhais, PR"], // TODO: CEP, bairro, sala e ponto de referência
   hours: "Terças e quintas, das 8h às 18h",
   parking: "Estacionamento na frente",
   email: "ssandrahretzko@gmail.com", // TODO: trocar pelo e-mail do consultório quando for criado

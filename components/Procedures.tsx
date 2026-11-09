@@ -1,17 +1,29 @@
 "use client";
 
 import { Check, Clock, Hourglass, UserRound } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import { Section } from "./Section";
 import { Button } from "./Button";
 import { Item, Stagger } from "./Motion";
-import { waLink, whatsappUrl } from "@/lib/site";
+import { img, images, waLink, whatsappUrl } from "@/lib/site";
 
 // Conteúdo: checklist respondido pela Dra. Sandra em 06/11/2026.
 // TODO: revisar com a Dra. e conferir as regras de publicidade do CFO antes de publicar.
 const procedures = [
   {
+    name: "Fios faciais",
+    photo: [images.fios, "50% 30%"] as const,
+    full: "Fios faciais",
+    lead: "Sustentação e estímulo do colágeno da própria pele.",
+    who: "Quem tem flacidez leve a moderada. A indicação depende da avaliação facial e do tipo de fio.",
+    duration: "De 12 a 24 meses, conforme o tipo de fio.",
+    result: "A sustentação aparece logo nos fios de tração; o colágeno evolui entre 30 e 90 dias.",
+    gives: ["Melhor sustentação dos tecidos", "Pele mais firme", "Contorno facial valorizado"],
+  },
+  {
     name: "Botox",
+    photo: [images.philosophy, "50% 20%"] as const,
     full: "Botox (toxina botulínica)",
     lead: "Suaviza linhas de expressão e previne que elas se aprofundem.",
     who: "Quem quer suavizar rugas e linhas de expressão (testa, entre as sobrancelhas, pés de galinha) ou preveni-las.",
@@ -21,6 +33,7 @@ const procedures = [
   },
   {
     name: "Preenchimento labial",
+    photo: [images.r3, "50% 62%"] as const,
     full: "Preenchimento labial",
     lead: "Volume e contorno na medida certa, respeitando o seu sorriso.",
     who: "Quem deseja melhorar formato, volume ou definição, recuperar volume perdido ou corrigir pequenas assimetrias.",
@@ -30,6 +43,7 @@ const procedures = [
   },
   {
     name: "Olheira",
+    photo: [images.doctor, "50% 28%"] as const,
     full: "Preenchimento de olheira",
     lead: "Suaviza a sombra abaixo dos olhos para um olhar mais descansado.",
     who: "Quem tem depressão no sulco lacrimal que dá aspecto cansado. Nem toda olheira se trata com preenchimento: a indicação é na avaliação.",
@@ -39,6 +53,7 @@ const procedures = [
   },
   {
     name: "Mandíbula",
+    photo: [images.r2, "50% 70%"] as const,
     full: "Preenchimento de mandíbula",
     lead: "Mais definição para o contorno do rosto e a transição para o pescoço.",
     who: "Quem busca definir a linha da mandíbula, melhorar a proporção do rosto ou recuperar contornos perdidos com a idade.",
@@ -48,6 +63,7 @@ const procedures = [
   },
   {
     name: "Full Face",
+    photo: [images.philosophy, "50% 55%"] as const,
     full: "Preenchimento Full Face",
     lead: "Harmonização do rosto como um todo, com volumes recuperados em pontos estratégicos.",
     who: "Quem quer equilibrar proporções, recuperar volume e sustentação. O planejamento é individual para cada rosto.",
@@ -56,16 +72,8 @@ const procedures = [
     gives: ["Volumes perdidos recuperados", "Melhor sustentação e contornos", "Aparência descansada e natural"],
   },
   {
-    name: "Fios faciais",
-    full: "Fios faciais",
-    lead: "Sustentação e estímulo do colágeno da própria pele.",
-    who: "Quem tem flacidez leve a moderada. A indicação depende da avaliação facial e do tipo de fio.",
-    duration: "De 12 a 24 meses, conforme o tipo de fio.",
-    result: "A sustentação aparece logo nos fios de tração; o colágeno evolui entre 30 e 90 dias.",
-    gives: ["Melhor sustentação dos tecidos", "Pele mais firme", "Contorno facial valorizado"],
-  },
-  {
     name: "Bioestimuladores",
+    photo: [images.detail, "50% 50%"] as const,
     full: "Bioestimuladores de colágeno",
     lead: "Firmeza que vem de dentro, de forma gradual e natural.",
     who: "Quem tem flacidez, perda de firmeza ou de qualidade da pele, ou quer prevenir os sinais do envelhecimento. Inclui o do próprio sangue.",
@@ -75,6 +83,7 @@ const procedures = [
   },
   {
     name: "Microagulhamento",
+    photo: [images.fios, "30% 60%"] as const,
     full: "Microagulhamento com ativos",
     lead: "Renovação da pele com ativos escolhidos para cada necessidade.",
     who: "Quem quer tratar manchas, poros dilatados, cicatrizes de acne, linhas finas ou textura irregular.",
@@ -84,6 +93,7 @@ const procedures = [
   },
   {
     name: "Peelings",
+    photo: [images.preench, "50% 40%"] as const,
     full: "Peelings químicos",
     lead: "Renovação celular para uma pele mais uniforme e saudável.",
     who: "Quem quer tratar manchas, acne e marcas, poros dilatados, linhas finas ou textura. O tipo de peeling depende da avaliação.",
@@ -111,7 +121,7 @@ export function Procedures() {
           </p>
         </Item>
 
-        <Item className="mt-[3vh] grid grid-cols-[minmax(0,1fr)] gap-[2vh] md:grid-cols-12 md:gap-10">
+        <Item className="mt-[2vh] grid grid-cols-[minmax(0,1fr)] gap-[1.5vh] md:grid-cols-12 md:gap-10">
           {/* Lista (desktop) / abas rolantes (celular) */}
           <div className="min-w-0 md:col-span-4">
             <div role="tablist" aria-label="Procedimentos" className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-1 md:mx-0 md:flex-col md:gap-0 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
@@ -140,7 +150,7 @@ export function Procedures() {
           {/* Detalhe */}
           <div className="min-w-0 md:col-span-8">
             {/* Todos os painéis ocupam a mesma célula: o cartão tem sempre a altura do maior */}
-            <div role="presentation" className="relative grid overflow-hidden rounded-3xl bg-olive p-4 text-white md:p-6">
+            <div role="presentation" className="relative grid overflow-hidden rounded-3xl bg-olive p-3.5 text-white md:p-6">
               {procedures.map((p, k) => {
                 const on = k === i;
                 return (
@@ -150,13 +160,17 @@ export function Procedures() {
                     aria-hidden={!on}
                     className={`col-start-1 row-start-1 transition-[opacity,transform,visibility] duration-500 ${on ? "visible translate-y-0 opacity-100" : "invisible translate-y-3 opacity-0"}`}
                   >
-                    <span aria-hidden className="fat pointer-events-none absolute -top-3 right-0 text-[5.5rem] leading-none text-white/10 md:-top-6 md:text-[9rem]">
-                      0{k + 1}
-                    </span>
+                    <div className="flex flex-col gap-2 md:flex-row md:gap-6">
+                    <div className="relative order-first h-[4.5vh] w-full shrink-0 overflow-hidden rounded-2xl md:order-last md:h-auto md:w-[13rem]">
+                      <Image src={img(p.photo[0], 600)} alt="" fill sizes="(min-width: 768px) 220px, 90vw" style={{ objectPosition: p.photo[1] }} className="object-cover saturate-[0.85]" />
+                      <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-olive/70 via-transparent to-transparent" />
+                      <span aria-hidden className="fat absolute bottom-2 left-3 text-3xl leading-none text-white/90 md:text-5xl">0{k + 1}</span>
+                    </div>
+                    <div className="min-w-0 flex-1">
                     <p className="eyebrow text-[#E6CFA5]">{p.full}</p>
-                    <h3 className="mt-1 max-w-md text-[1.05rem] leading-tight tracking-tight md:mt-1.5 md:text-[1.7rem]">{p.lead}</h3>
+                    <h3 className="mt-1 max-w-md text-[0.98rem] leading-tight tracking-tight md:mt-1.5 md:text-[1.45rem]">{p.lead}</h3>
 
-                    <dl className="mt-2.5 space-y-2 text-[0.78rem] leading-snug md:mt-3 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-3 md:space-y-0 md:text-sm">
+                    <dl className="mt-2 space-y-1.5 text-[0.78rem] leading-snug md:mt-3 md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-2.5 md:space-y-0 md:text-[0.8rem]">
                       {[
                         [UserRound, "Para quem", p.who],
                         [Clock, "Duração", p.duration],
@@ -191,6 +205,8 @@ export function Procedures() {
                     >
                       Perguntar sobre {p.name.toLowerCase()} →
                     </a>
+                    </div>
+                    </div>
                   </div>
                 );
               })}
@@ -198,7 +214,7 @@ export function Procedures() {
           </div>
         </Item>
 
-        <Item className="mt-[2.5vh] hidden md:block">
+        <Item className="mt-[2.5vh] hidden lg:block">
           <Button href={whatsappUrl} variant="wine">
             Quero uma avaliação
           </Button>
