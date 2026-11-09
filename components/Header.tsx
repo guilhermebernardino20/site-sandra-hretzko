@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { whatsappUrl } from "@/lib/site";
 import { useActiveSection } from "@/lib/useActiveSection";
 
-export const sectionIds = ["inicio", "filosofia", "procedimentos", "como-funciona", "experiencia", "resultados", "sobre", "blog", "duvidas", "contato"];
+export const sectionIds = ["inicio", "filosofia", "procedimentos", "como-funciona", "experiencia", "resultados", "sobre", "blog", "duvidas", "como-chegar", "contato"];
 
 const links = [
   { id: "filosofia", label: "Filosofia" },
@@ -17,6 +17,7 @@ const links = [
   { id: "sobre", label: "Sobre" },
   { id: "blog", label: "Blog" },
   { id: "duvidas", label: "Dúvidas" },
+  { id: "como-chegar", label: "Como chegar" },
 ];
 // Menu do desktop mais enxuto; o menu mobile mostra todos
 const desktopLinks = links.filter((l) => ["filosofia", "procedimentos", "experiencia", "resultados", "sobre", "blog"].includes(l.id));
@@ -76,13 +77,13 @@ export function Header() {
             <span className={`fat-sm tracking-[0.14em] whitespace-nowrap uppercase transition-all duration-700 sm:tracking-[0.2em] ${scrolled ? "text-[0.58rem] sm:text-[0.74rem]" : "text-[0.58rem] sm:text-[0.8rem] xl:text-[0.88rem]"}`}>
               Dra. Sandra <span className={`transition-colors duration-500 ${dark ? "text-[#E6CFA5]" : "text-wine group-hover:text-olive"}`}>Hretzko</span>
             </span>
-            <span className={`flex items-center gap-2 tracking-[0.26em] uppercase transition-all duration-700 sm:tracking-[0.34em] ${dark ? "text-white/70" : "text-olive"} ${scrolled ? "mt-1.5 text-[0.46rem] sm:text-[0.54rem]" : "mt-1.5 text-[0.46rem] sm:text-[0.58rem]"}`}>
-              <span className={`block h-px w-4 transition-all duration-500 group-hover:w-7 ${dark ? "bg-white/60" : "bg-olive/60"}`} />
-              Medicina estética
+            <span className={`flex items-center gap-2 tracking-[0.16em] whitespace-nowrap uppercase transition-all duration-700 sm:tracking-[0.34em] ${dark ? "text-white/70" : "text-olive"} ${scrolled ? "mt-1.5 text-[0.44rem] sm:text-[0.54rem]" : "mt-1.5 text-[0.44rem] sm:text-[0.58rem]"}`}>
+              <span className={`hidden h-px w-4 transition-all duration-500 group-hover:w-7 sm:block ${dark ? "bg-white/60" : "bg-olive/60"}`} />
+              Harmonização orofacial
             </span>
           </a>
 
-          <nav aria-label="Principal" className="mx-2 hidden min-w-0 flex-1 items-center justify-center lg:flex xl:mx-4">
+          <nav aria-label="Principal" className="mx-2 hidden min-w-0 flex-1 items-center justify-center xl:flex xl:mx-4">
             {desktopLinks.map((l) => {
               const on = active === l.id;
               return (
@@ -129,7 +130,7 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
-              className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors lg:hidden ${
+              className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors xl:hidden ${
                 dark ? "border-white/30 hover:bg-white/15" : "border-brown/15 hover:bg-brown/5"
               }`}
             >
@@ -164,7 +165,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-white/90 px-8 pt-28 pb-8 backdrop-blur-2xl lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-white/90 px-8 pt-[clamp(5.5rem,14vh,7rem)] pb-6 backdrop-blur-2xl xl:hidden"
           >
             <motion.ul
               initial="hidden"
@@ -182,7 +183,7 @@ export function Header() {
                   <a
                     href={`#${l.id}`}
                     onClick={() => setOpen(false)}
-                    className={`flex items-baseline gap-4 py-[1.2vh] text-[clamp(1.4rem,4.4vh,2.2rem)] tracking-tighter uppercase ${
+                    className={`flex items-baseline gap-4 py-[0.9vh] text-[clamp(1.15rem,3.7vh,2.2rem)] tracking-tighter uppercase ${
                       active === l.id ? "text-wine" : "text-brown"
                     }`}
                   >
@@ -196,7 +197,7 @@ export function Header() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="fat-sm mt-6 flex items-center justify-center gap-2 rounded-full bg-wine px-6 py-4 text-sm tracking-wide text-white"
+              className="fat-sm mt-4 flex items-center justify-center gap-2 rounded-full bg-wine px-6 py-3.5 text-sm tracking-wide text-white"
             >
               <MessageCircle size={16} strokeWidth={1.75} /> Agendar Avaliação
             </a>

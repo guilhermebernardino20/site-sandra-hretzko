@@ -92,7 +92,7 @@ export default async function PostPage({ params }: Props) {
           })}
 
           <p className="mt-12 rounded-2xl bg-olive/10 p-4 text-xs leading-snug text-brown/80">
-            Conteúdo informativo. Não substitui avaliação médica individual; a indicação de qualquer procedimento depende de consulta.
+            Conteúdo informativo. Não substitui avaliação profissional individual; a indicação de qualquer procedimento depende de consulta.
           </p>
         </div>
 

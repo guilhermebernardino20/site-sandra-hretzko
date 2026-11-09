@@ -77,7 +77,7 @@ export function Hero() {
         <div className="md:col-span-7">
           <Item>
             <p className="eyebrow mb-[1.5vh] inline-block rounded-full bg-olive px-4 py-2 !text-[0.6rem] text-white">
-              Medicina estética natural
+              Harmonização orofacial natural
             </p>
           </Item>
           <motion.h1 style={{ x: titleX, y: titleY }} className="text-[clamp(2rem,min(10.8vw,8vh),5.4rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
@@ -137,7 +137,7 @@ export function Hero() {
                 <Layer sx={sx} sy={sy} depth={-14} className="absolute inset-x-5 bottom-5 hidden md:block">
                   <div className="rounded-2xl bg-white/70 p-4 backdrop-blur-md">
                     <p className="fat-sm text-sm">Dra. Sandra Hretzko</p>
-                    <p className="text-xs">Medicina estética natural</p>
+                    <p className="text-xs">Cirurgiã-dentista · Harmonização orofacial</p>
                   </div>
                 </Layer>
                 {/* reflexo de luz que desliza conforme o mouse */}

@@ -6,7 +6,7 @@ import { img } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog — Dra. Sandra Hretzko",
-  description: "Informação com calma sobre medicina estética, procedimentos e cuidados.",
+  description: "Informação com calma sobre harmonização orofacial, procedimentos e cuidados.",
 };
 
 export default function BlogIndex() {

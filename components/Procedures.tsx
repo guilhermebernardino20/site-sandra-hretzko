@@ -1,38 +1,107 @@
 "use client";
 
-import Image from "next/image";
-import { Clock, Hourglass, CircleSlash } from "lucide-react";
+import { Check, Clock, Hourglass, UserRound } from "lucide-react";
+import { useState } from "react";
 import { Section } from "./Section";
 import { Button } from "./Button";
-import { Item, ItemLi, Reveal, Stagger } from "./Motion";
-import { img, images, waLink, whatsappUrl } from "@/lib/site";
+import { Item, Stagger } from "./Motion";
+import { waLink, whatsappUrl } from "@/lib/site";
 
+// Conteúdo: checklist respondido pela Dra. Sandra em 06/11/2026.
+// TODO: revisar com a Dra. e conferir as regras de publicidade do CFO antes de publicar.
 const procedures = [
   {
-    name: "Fios Faciais",
-    image: images.fios,
-    lead: "Sustentação suave que estimula o colágeno da própria pele.",
-    action: "Efeito gradual, com melhora nas semanas seguintes.",
-    duration: "Em média 12 a 18 meses.",
-    avoid: "Sem indicação para mudar o formato do rosto ou em flacidez muito avançada.",
+    name: "Botox",
+    full: "Botox (toxina botulínica)",
+    lead: "Suaviza linhas de expressão e previne que elas se aprofundem.",
+    who: "Quem quer suavizar rugas e linhas de expressão (testa, entre as sobrancelhas, pés de galinha) ou preveni-las.",
+    duration: "De 3 a 6 meses.",
+    result: "Primeiros efeitos em 3 a 5 dias, máximo em 10 a 15 dias. Retorno no 15º dia para avaliar retoque.",
+    gives: ["Linhas de expressão suavizadas", "Aparência descansada e natural", "Marcas que não se aprofundam"],
   },
   {
-    name: "Preenchimentos",
-    image: images.preench,
-    lead: "Reposição pontual de volume onde ele se perdeu — nunca onde nunca existiu.",
-    action: "Visível na avaliação, assentando em até 15 dias.",
-    duration: "De 6 a 18 meses, conforme a região.",
-    avoid: "Nada de excesso nem manutenção sem necessidade. Se o melhor é esperar, esperamos.",
+    name: "Preenchimento labial",
+    full: "Preenchimento labial",
+    lead: "Volume e contorno na medida certa, respeitando o seu sorriso.",
+    who: "Quem deseja melhorar formato, volume ou definição, recuperar volume perdido ou corrigir pequenas assimetrias.",
+    duration: "De 8 a 12 meses.",
+    result: "Visível na hora, com inchaço nos primeiros dias. Resultado mais próximo do definitivo em 15 a 30 dias.",
+    gives: ["Mais definição e contorno", "Proporção e simetria", "Hidratação e valorização do sorriso"],
+  },
+  {
+    name: "Olheira",
+    full: "Preenchimento de olheira",
+    lead: "Suaviza a sombra abaixo dos olhos para um olhar mais descansado.",
+    who: "Quem tem depressão no sulco lacrimal que dá aspecto cansado. Nem toda olheira se trata com preenchimento: a indicação é na avaliação.",
+    duration: "De 9 a 18 meses.",
+    result: "Recuperação rápida. Pode ficar um roxinho, que sai em até 15 dias.",
+    gives: ["Menos sombra sob os olhos", "Transição suave com a bochecha", "Olhar leve e rejuvenescido"],
+  },
+  {
+    name: "Mandíbula",
+    full: "Preenchimento de mandíbula",
+    lead: "Mais definição para o contorno do rosto e a transição para o pescoço.",
+    who: "Quem busca definir a linha da mandíbula, melhorar a proporção do rosto ou recuperar contornos perdidos com a idade.",
+    duration: "De 12 a 18 meses.",
+    result: "Visível na hora, com inchaço nos primeiros dias. Avaliação final em 15 a 30 dias.",
+    gives: ["Contorno mais definido", "Proporção facial harmoniosa", "Aspecto estruturado e elegante"],
+  },
+  {
+    name: "Full Face",
+    full: "Preenchimento Full Face",
+    lead: "Harmonização do rosto como um todo, com volumes recuperados em pontos estratégicos.",
+    who: "Quem quer equilibrar proporções, recuperar volume e sustentação. O planejamento é individual para cada rosto.",
+    duration: "De 12 a 24 meses, conforme a região e o produto.",
+    result: "Visível na hora, com inchaço nos primeiros dias. Mais próximo do definitivo entre 15 e 30 dias.",
+    gives: ["Volumes perdidos recuperados", "Melhor sustentação e contornos", "Aparência descansada e natural"],
+  },
+  {
+    name: "Fios faciais",
+    full: "Fios faciais",
+    lead: "Sustentação e estímulo do colágeno da própria pele.",
+    who: "Quem tem flacidez leve a moderada. A indicação depende da avaliação facial e do tipo de fio.",
+    duration: "De 12 a 24 meses, conforme o tipo de fio.",
+    result: "A sustentação aparece logo nos fios de tração; o colágeno evolui entre 30 e 90 dias.",
+    gives: ["Melhor sustentação dos tecidos", "Pele mais firme", "Contorno facial valorizado"],
+  },
+  {
+    name: "Bioestimuladores",
+    full: "Bioestimuladores de colágeno",
+    lead: "Firmeza que vem de dentro, de forma gradual e natural.",
+    who: "Quem tem flacidez, perda de firmeza ou de qualidade da pele, ou quer prevenir os sinais do envelhecimento. Inclui o do próprio sangue.",
+    duration: "De 18 a 24 meses.",
+    result: "Sem efeito imediato: primeiros resultados entre 30 e 60 dias, máximo entre 3 e 6 meses.",
+    gives: ["Mais firmeza e elasticidade", "Textura e qualidade da pele", "Sem alterar os seus traços"],
+  },
+  {
+    name: "Microagulhamento",
+    full: "Microagulhamento com ativos",
+    lead: "Renovação da pele com ativos escolhidos para cada necessidade.",
+    who: "Quem quer tratar manchas, poros dilatados, cicatrizes de acne, linhas finas ou textura irregular.",
+    duration: "Progressiva, com manutenção conforme o protocolo.",
+    result: "A evolução costuma aparecer entre 30 e 90 dias.",
+    gives: ["Pele mais uniforme e luminosa", "Cicatrizes e linhas suavizadas", "Poros menos evidentes"],
+  },
+  {
+    name: "Peelings",
+    full: "Peelings químicos",
+    lead: "Renovação celular para uma pele mais uniforme e saudável.",
+    who: "Quem quer tratar manchas, acne e marcas, poros dilatados, linhas finas ou textura. O tipo de peeling depende da avaliação.",
+    duration: "Varia pelo tipo; mantida com skincare e fotoproteção.",
+    result: "Progressivo, com possível descamação. Pode exigir mais de uma sessão.",
+    gives: ["Manchas e acne tratadas", "Textura mais uniforme", "Mais luminosidade e viço"],
   },
 ];
 
 export function Procedures() {
+  const [i, setI] = useState(0);
+  
   return (
     <Section id="procedimentos">
       <Stagger>
         <Item className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
           <div>
-            <p className="eyebrow mb-[1.5vh] text-olive">Procedimentos de destaque</p>
+            <p className="eyebrow mb-[1.5vh] text-olive">Procedimentos</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
               Indicação precisa, <span className="text-wine">sempre.</span>
             </h2>
@@ -42,47 +111,94 @@ export function Procedures() {
           </p>
         </Item>
 
-        <ul className="mt-[3vh] grid gap-[2vh] md:grid-cols-2 md:gap-12">
-          {procedures.map((p) => (
-            <ItemLi key={p.name} className="group relative grid grid-cols-[28%_1fr] gap-4 border-t border-wine/40 pt-[2vh] md:grid-cols-1 md:gap-0 md:pt-5">
-              <Reveal className="relative h-full min-h-[18vh] overflow-hidden rounded-2xl md:h-[26vh] md:min-h-0">
-                <Image src={img(p.image, 800)} alt={p.name} fill sizes="(min-width: 768px) 45vw, 30vw" className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110" />
-              </Reveal>
-              <div className="md:mt-5">
-                <h3 className="text-xl tracking-tighter uppercase transition-all duration-500 group-hover:translate-x-2 group-hover:text-wine md:text-3xl">{p.name}</h3>
-                <p className="mt-1 hidden text-base md:block">{p.lead}</p>
-                <dl className="mt-1.5 space-y-1.5 text-[0.8rem] leading-snug md:mt-4 md:space-y-3 md:text-sm">
-                  {[
-                    [Clock, "Ação", p.action],
-                    [Hourglass, "Duração", p.duration],
-                    [CircleSlash, "Não fazemos", p.avoid],
-                  ].map(([Icon, k, v]) => {
-                    const I = Icon as typeof Clock;
-                    return (
-                      <div key={k as string} className={`gap-2.5 ${k === "Não fazemos" ? "hidden md:flex" : "flex"}`}>
-                        <I size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-olive transition-transform duration-500 group-hover:scale-125" />
+        <Item className="mt-[3vh] grid grid-cols-[minmax(0,1fr)] gap-[2vh] md:grid-cols-12 md:gap-10">
+          {/* Lista (desktop) / abas rolantes (celular) */}
+          <div className="min-w-0 md:col-span-4">
+            <div role="tablist" aria-label="Procedimentos" className="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-1 md:mx-0 md:flex-col md:gap-0 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+              {procedures.map((x, k) => {
+                const on = k === i;
+                return (
+                  <button
+                    key={x.name}
+                    type="button"
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => setI(k)}
+                    className={`group group relative flex h-9 w-[10.75rem] shrink-0 snap-start items-center justify-center gap-2 rounded-full border px-3 text-left whitespace-nowrap transition-all duration-500 md:h-auto md:w-auto md:justify-start md:gap-3 md:rounded-none md:border-0 md:border-b md:border-wine/25 md:px-0 md:py-[1.05vh] ${
+                      on ? "border-wine bg-wine text-white md:bg-transparent md:text-wine" : "border-brown/20 hover:border-wine md:hover:pl-2"
+                    }`}
+                  >
+                    <span className={`eyebrow !text-[0.6rem] ${on ? "text-white md:text-wine" : "text-olive"}`}>0{k + 1}</span>
+                    <span className="fat-sm text-[0.8rem] tracking-tight md:text-lg">{x.name}</span>
+                    {on && <span aria-hidden className="ml-auto hidden h-px w-8 bg-wine md:block" />}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Detalhe */}
+          <div className="min-w-0 md:col-span-8">
+            {/* Todos os painéis ocupam a mesma célula: o cartão tem sempre a altura do maior */}
+            <div role="presentation" className="relative grid overflow-hidden rounded-3xl bg-olive p-4 text-white md:p-6">
+              {procedures.map((p, k) => {
+                const on = k === i;
+                return (
+                  <div
+                    key={p.name}
+                    role="tabpanel"
+                    aria-hidden={!on}
+                    className={`col-start-1 row-start-1 transition-[opacity,transform,visibility] duration-500 ${on ? "visible translate-y-0 opacity-100" : "invisible translate-y-3 opacity-0"}`}
+                  >
+                    <span aria-hidden className="fat pointer-events-none absolute -top-3 right-0 text-[5.5rem] leading-none text-white/10 md:-top-6 md:text-[9rem]">
+                      0{k + 1}
+                    </span>
+                    <p className="eyebrow text-[#E6CFA5]">{p.full}</p>
+                    <h3 className="mt-1 max-w-md text-[1.05rem] leading-tight tracking-tight md:mt-1.5 md:text-[1.7rem]">{p.lead}</h3>
+
+                    <dl className="mt-2.5 space-y-2 text-[0.78rem] leading-snug md:mt-3 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-3 md:space-y-0 md:text-sm">
+                      {[
+                        [UserRound, "Para quem", p.who],
+                        [Clock, "Duração", p.duration],
+                        [Hourglass, "Resultado", p.result],
+                      ].map(([Icon, label, v]) => {
+                        const I = Icon as typeof Clock;
+                        return (
+                          <div key={label as string} className="flex gap-2.5">
+                            <I size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#E6CFA5]" />
+                            <div>
+                              <dt className="eyebrow fat-sm !text-[0.55rem] text-[#E6CFA5]">{label as string}</dt>
+                              <dd className="text-white/90">{v as string}</dd>
+                            </div>
+                          </div>
+                        );
+                      })}
+                      <div className="hidden gap-2.5 md:flex">
+                        <Check size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#E6CFA5]" />
                         <div>
-                          <dt className="eyebrow fat-sm !text-[0.55rem] text-olive">{k as string}</dt>
-                          <dd>{v as string}</dd>
+                          <dt className="eyebrow fat-sm !text-[0.55rem] text-[#E6CFA5]">O que proporciona</dt>
+                          <dd className="text-white/90">{p.gives.join(" · ")}</dd>
                         </div>
                       </div>
-                    );
-                  })}
-                </dl>
-                <a
-                  href={waLink(`Olá, Dra. Sandra! Gostaria de saber mais sobre ${p.name}.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="fat-sm link-draw mt-4 hidden items-center gap-2 text-sm text-wine md:inline-flex"
-                >
-                  Perguntar sobre {p.name.toLowerCase()} →
-                </a>
-              </div>
-            </ItemLi>
-          ))}
-        </ul>
+                    </dl>
 
-        <Item className="mt-[3vh]">
+                    <a
+                      href={waLink(`Olá, Dra. Sandra! Gostaria de saber mais sobre ${p.full.toLowerCase()}.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={on ? 0 : -1}
+                      className="fat-sm link-draw mt-3 inline-flex items-center gap-2 text-sm text-[#E6CFA5] md:mt-3"
+                    >
+                      Perguntar sobre {p.name.toLowerCase()} →
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Item>
+
+        <Item className="mt-[2.5vh] hidden md:block">
           <Button href={whatsappUrl} variant="wine">
             Quero uma avaliação
           </Button>

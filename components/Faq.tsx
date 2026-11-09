@@ -8,7 +8,7 @@ import { Button } from "./Button";
 import { Item, Stagger } from "./Motion";
 import { waLink } from "@/lib/site";
 
-/** TODO: a Dra. Sandra deve revisar e aprovar as respostas antes de publicar. */
+/** Baseado no checklist da Dra. Sandra (06/11/2026). TODO: ela deve revisar as respostas antes de publicar. */
 const faqs = [
   {
     q: "Vou ficar com aspecto artificial?",
@@ -19,12 +19,20 @@ const faqs = [
     a: "Uma consulta sem pressa: ouvimos a sua queixa, analisamos o seu rosto com calma e montamos um plano individual. Avaliar não obriga a fazer nenhum procedimento.",
   },
   {
+    q: "O procedimento dói?",
+    a: "Costuma ser bem tolerado. Usamos pomada anestésica ou anestesia, conforme o procedimento, e você pode sentir pequenas picadas, pressão ou um leve desconforto.",
+  },
+  {
     q: "Quanto tempo dura o resultado?",
-    a: "Varia com a pele, a região e a rotina. Em média, 12 a 18 meses nos fios e de 6 a 18 meses nos preenchimentos. Na avaliação você recebe uma estimativa para o seu caso.",
+    a: "Varia com o organismo, a região e o produto. Em média: botox de 3 a 6 meses, preenchimentos de 8 a 24 meses e fios faciais de 12 a 24 meses. Na avaliação você recebe uma estimativa para o seu caso.",
+  },
+  {
+    q: "Quando o resultado aparece?",
+    a: "Nos preenchimentos, na hora, com inchaço nos primeiros dias; o resultado mais próximo do definitivo vem em 15 a 30 dias. No botox, os primeiros efeitos surgem em 3 a 5 dias e o máximo em 10 a 15. Bioestimuladores e fios agem de forma gradual.",
   },
   {
     q: "Como agendo?",
-    a: "Pelo WhatsApp. Respondemos e combinamos o melhor horário para você.",
+    a: "Pelo WhatsApp. Atendemos às terças e quintas, das 8h às 18h, em Pinhais, com estacionamento na frente. Pagamento particular, com parcelamento conforme o tratamento.",
   },
 ];
 
