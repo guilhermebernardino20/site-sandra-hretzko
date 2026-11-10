@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Quote } from "lucide-react";
-import { useState } from "react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Section } from "./Section";
 import { Button } from "./Button";
 import { BeforeAfter } from "./BeforeAfter";
@@ -14,6 +14,13 @@ import { whatsappUrl } from "@/lib/site";
 export function Results() {
   const [i, setI] = useState(0);
   const c = cases[i];
+  const strip = useRef<HTMLDivElement>(null);
+  const go = (d: 1 | -1) => setI((v) => (v + d + cases.length) % cases.length);
+  // mantém o botão do caso ativo visível na fileira
+  useEffect(() => {
+    const el = strip.current?.children[i] as HTMLElement | undefined;
+    el?.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+  }, [i]);
 
   return (
     <Section id="resultados" theme="wine">
@@ -53,27 +60,38 @@ export function Results() {
               </motion.figure>
             </AnimatePresence>
 
-            <div role="tablist" aria-label="Casos" className="mt-[2.5vh] flex items-center gap-2">
-              {cases.map((x, k) => (
-                <button
-                  key={x.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={k === i}
-                  aria-label={`Caso ${k + 1}`}
-                  onClick={() => setI(k)}
-                  className={`fat-sm h-11 w-11 rounded-full border text-sm transition-all duration-300 ${
-                    k === i ? "border-[#E6CFA5] bg-[#E6CFA5] text-brown" : "border-white/40 text-white hover:border-white hover:bg-white/10"
-                  }`}
-                >
-                  0{k + 1}
-                </button>
-              ))}
-              <div className="ml-auto hidden md:block">
-                <Button href={whatsappUrl} variant="light">
-                  Quero um resultado natural
-                </Button>
+            <div className="mt-[2.5vh] flex items-center gap-2">
+              <button type="button" onClick={() => go(-1)} aria-label="Caso anterior" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 transition-colors hover:bg-white hover:text-wine">
+                <ChevronLeft size={18} strokeWidth={1.5} />
+              </button>
+              <div role="tablist" aria-label="Casos" ref={strip} className="flex min-w-0 flex-1 gap-2 overflow-x-auto scroll-smooth py-1 [&::-webkit-scrollbar]:hidden">
+                {cases.map((x, k) => (
+                  <button
+                    key={x.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={k === i}
+                    aria-label={`Caso ${k + 1}`}
+                    onClick={() => setI(k)}
+                    className={`fat-sm h-10 w-10 shrink-0 rounded-full border text-[0.8rem] transition-all duration-300 ${
+                      k === i ? "border-[#E6CFA5] bg-[#E6CFA5] text-brown" : "border-white/40 text-white hover:border-white hover:bg-white/10"
+                    }`}
+                  >
+                    {String(k + 1).padStart(2, "0")}
+                  </button>
+                ))}
               </div>
+              <button type="button" onClick={() => go(1)} aria-label="Próximo caso" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 transition-colors hover:bg-white hover:text-wine">
+                <ChevronRight size={18} strokeWidth={1.5} />
+              </button>
+              <span className="eyebrow hidden shrink-0 !text-[0.6rem] text-[#E6CFA5] sm:block">
+                {String(i + 1).padStart(2, "0")} / {String(cases.length).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="mt-[2vh] hidden md:block">
+              <Button href={whatsappUrl} variant="light">
+                Quero um resultado natural
+              </Button>
             </div>
             <p className="mt-[1.5vh] text-[0.65rem] leading-snug text-white/60">
               Resultados variam de pessoa para pessoa. Imagens e depoimentos publicados com autorização das pacientes.

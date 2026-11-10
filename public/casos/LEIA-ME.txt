@@ -1,0 +1,4 @@
+Fotos de antes e depois (publicar só com termo de uso de imagem assinado).
+Nome dos arquivos: caso-1-antes.jpg, caso-1-depois.jpg, caso-2-antes.jpg ...
+Mesmo enquadramento e luz nas duas fotos, proporção parecida com 4:5 ou 1:1.
+Depois, em lib/cases.ts, troque o caso de exemplo por real(N, { patient, procedure, time, quote }).
