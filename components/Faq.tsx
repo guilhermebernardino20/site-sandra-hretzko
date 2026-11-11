@@ -44,7 +44,7 @@ export function Faq() {
         <Item className="md:col-span-5">
           <p className="eyebrow mb-[1.5vh] text-[#E6CFA5]">Dúvidas frequentes</p>
           <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-            O que mais <span className="text-[#E6CFA5]">perguntam.</span>
+            O que mais <span className="shimmer shimmer-gold">perguntam.</span>
           </h2>
           <div className="mt-[3vh] hidden md:block">
             <Button href={waLink("Olá, Dra. Sandra! Tenho uma dúvida antes de agendar.")} variant="light">

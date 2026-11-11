@@ -6,14 +6,14 @@ import { useState } from "react";
 import { Section } from "./Section";
 import { Button } from "./Button";
 import { Item, Stagger } from "./Motion";
-import { img, images, waLink, whatsappUrl } from "@/lib/site";
+import { waLink, whatsappUrl } from "@/lib/site";
 
 // Conteúdo: checklist respondido pela Dra. Sandra em 06/11/2026.
 // TODO: revisar com a Dra. e conferir as regras de publicidade do CFO antes de publicar.
 const procedures = [
   {
     name: "Fios faciais",
-    photo: [images.fios, "50% 30%"] as const,
+    photo: ["/procedimentos/fios-faciais.jpg", "50% 28%"] as const,
     full: "Fios faciais",
     lead: "Sustentação e estímulo do colágeno da própria pele.",
     who: "Quem tem flacidez leve a moderada. A indicação depende da avaliação facial e do tipo de fio.",
@@ -23,7 +23,7 @@ const procedures = [
   },
   {
     name: "Botox",
-    photo: [images.philosophy, "50% 20%"] as const,
+    photo: ["/procedimentos/botox.jpg", "50% 40%"] as const,
     full: "Botox (toxina botulínica)",
     lead: "Suaviza linhas de expressão e previne que elas se aprofundem.",
     who: "Quem quer suavizar rugas e linhas de expressão (testa, entre as sobrancelhas, pés de galinha) ou preveni-las.",
@@ -33,7 +33,7 @@ const procedures = [
   },
   {
     name: "Preenchimento labial",
-    photo: [images.r3, "50% 62%"] as const,
+    photo: ["/procedimentos/preenchimento-labial.jpg", "50% 62%"] as const,
     full: "Preenchimento labial",
     lead: "Volume e contorno na medida certa, respeitando o seu sorriso.",
     who: "Quem deseja melhorar formato, volume ou definição, recuperar volume perdido ou corrigir pequenas assimetrias.",
@@ -43,7 +43,7 @@ const procedures = [
   },
   {
     name: "Olheira",
-    photo: [images.doctor, "50% 28%"] as const,
+    photo: ["/procedimentos/olheira.jpg", "50% 25%"] as const,
     full: "Preenchimento de olheira",
     lead: "Suaviza a sombra abaixo dos olhos para um olhar mais descansado.",
     who: "Quem tem depressão no sulco lacrimal que dá aspecto cansado. Nem toda olheira se trata com preenchimento: a indicação é na avaliação.",
@@ -53,7 +53,7 @@ const procedures = [
   },
   {
     name: "Mandíbula",
-    photo: [images.r2, "50% 70%"] as const,
+    photo: ["/procedimentos/mandibula.jpg", "50% 62%"] as const,
     full: "Preenchimento de mandíbula",
     lead: "Mais definição para o contorno do rosto e a transição para o pescoço.",
     who: "Quem busca definir a linha da mandíbula, melhorar a proporção do rosto ou recuperar contornos perdidos com a idade.",
@@ -63,7 +63,7 @@ const procedures = [
   },
   {
     name: "Full Face",
-    photo: [images.philosophy, "50% 55%"] as const,
+    photo: ["/procedimentos/full-face.jpg", "50% 35%"] as const,
     full: "Preenchimento Full Face",
     lead: "Harmonização do rosto como um todo, com volumes recuperados em pontos estratégicos.",
     who: "Quem quer equilibrar proporções, recuperar volume e sustentação. O planejamento é individual para cada rosto.",
@@ -73,7 +73,7 @@ const procedures = [
   },
   {
     name: "Bioestimuladores",
-    photo: [images.detail, "50% 50%"] as const,
+    photo: ["/procedimentos/bioestimuladores.jpg", "50% 30%"] as const,
     full: "Bioestimuladores de colágeno",
     lead: "Firmeza que vem de dentro, de forma gradual e natural.",
     who: "Quem tem flacidez, perda de firmeza ou de qualidade da pele, ou quer prevenir os sinais do envelhecimento. Inclui o do próprio sangue.",
@@ -83,7 +83,7 @@ const procedures = [
   },
   {
     name: "Microagulhamento",
-    photo: [images.fios, "30% 60%"] as const,
+    photo: ["/procedimentos/microagulhamento.jpg", "40% 45%"] as const,
     full: "Microagulhamento com ativos",
     lead: "Renovação da pele com ativos escolhidos para cada necessidade.",
     who: "Quem quer tratar manchas, poros dilatados, cicatrizes de acne, linhas finas ou textura irregular.",
@@ -93,7 +93,7 @@ const procedures = [
   },
   {
     name: "Peelings",
-    photo: [images.preench, "50% 40%"] as const,
+    photo: ["/procedimentos/peelings.jpg", "50% 35%"] as const,
     full: "Peelings químicos",
     lead: "Renovação celular para uma pele mais uniforme e saudável.",
     who: "Quem quer tratar manchas, acne e marcas, poros dilatados, linhas finas ou textura. O tipo de peeling depende da avaliação.",
@@ -113,7 +113,7 @@ export function Procedures() {
           <div>
             <p className="eyebrow mb-[1.5vh] text-olive">Procedimentos</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-              Indicação precisa, <span className="text-wine">sempre.</span>
+              Indicação precisa, <span className="shimmer shimmer-wine">sempre.</span>
             </h2>
           </div>
           <p className="hidden max-w-xs text-sm md:block">
@@ -160,13 +160,18 @@ export function Procedures() {
                     aria-hidden={!on}
                     className={`col-start-1 row-start-1 transition-[opacity,transform,visibility] duration-500 ${on ? "visible translate-y-0 opacity-100" : "invisible translate-y-3 opacity-0"}`}
                   >
-                    <div className="flex flex-col gap-2 md:flex-row md:gap-6">
-                    <div className="relative order-first h-[4.5vh] w-full shrink-0 overflow-hidden rounded-2xl md:order-last md:h-auto md:w-[13rem]">
-                      <Image src={img(p.photo[0], 600)} alt="" fill sizes="(min-width: 768px) 220px, 90vw" style={{ objectPosition: p.photo[1] }} className="object-cover saturate-[0.85]" />
+                    <div className="flex gap-3 md:gap-6">
+                    {/* foto padronizada em preto e branco (desktop) */}
+                    <div className="relative order-last hidden w-[13rem] shrink-0 overflow-hidden rounded-2xl md:block">
+                      <Image src={p.photo[0]} alt="" fill sizes="220px" style={{ objectPosition: p.photo[1] }} className={`object-cover ${on ? "kenburns" : ""}`} />
                       <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-olive/70 via-transparent to-transparent" />
-                      <span aria-hidden className="fat absolute bottom-2 left-3 text-3xl leading-none text-white/90 md:text-5xl">0{k + 1}</span>
+                      <span aria-hidden className="fat absolute bottom-3 left-4 text-5xl leading-none text-white/90">0{k + 1}</span>
                     </div>
                     <div className="min-w-0 flex-1">
+                    {/* miniatura no celular, ao lado do título */}
+                    <div className="float-right mb-1 ml-3 h-[4.6rem] w-[3.6rem] overflow-hidden rounded-xl md:hidden">
+                      <Image src={p.photo[0]} alt="" width={120} height={150} style={{ objectPosition: p.photo[1] }} className="h-full w-full object-cover" />
+                    </div>
                     <p className="eyebrow text-[#E6CFA5]">{p.full}</p>
                     <h3 className="mt-1 max-w-md text-[0.98rem] leading-tight tracking-tight md:mt-1.5 md:text-[1.45rem]">{p.lead}</h3>
 

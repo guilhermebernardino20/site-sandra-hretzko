@@ -1,13 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { animate, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import type { Case } from "@/lib/cases";
 
 /** Comparador de antes e depois com divisor arrastável (mouse, toque e teclado). */
 export function BeforeAfter({ data, className = "" }: { data: Case; className?: string }) {
   const [pos, setPos] = useState(50);
   const box = useRef<HTMLDivElement>(null);
+  const seen = useInView(box, { once: true, amount: 0.6 });
+  const touched = useRef(false);
+
+  // Ao aparecer, o divisor passeia sozinho uma vez para mostrar que dá para arrastar
+  useEffect(() => {
+    if (!seen) return;
+    const a = animate(50, [50, 24, 76, 50], { duration: 3.6, delay: 0.6, ease: "easeInOut", onUpdate: (v) => !touched.current && setPos(v) });
+    return () => a.stop();
+  }, [seen]);
 
   const move = (clientX: number) => {
     const r = box.current?.getBoundingClientRect();
@@ -27,6 +37,7 @@ export function BeforeAfter({ data, className = "" }: { data: Case; className?: 
       aria-valuemax={100}
       aria-valuenow={Math.round(pos)}
       onPointerDown={(e) => {
+        touched.current = true;
         e.currentTarget.setPointerCapture(e.pointerId);
         move(e.clientX);
       }}

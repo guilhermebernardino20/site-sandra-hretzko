@@ -18,8 +18,10 @@ export function Results() {
   const go = (d: 1 | -1) => setI((v) => (v + d + cases.length) % cases.length);
   // mantém o botão do caso ativo visível na fileira
   useEffect(() => {
-    const el = strip.current?.children[i] as HTMLElement | undefined;
-    el?.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    // rola só a fileira (scrollIntoView arrastaria a página inteira até esta seção)
+    const box = strip.current;
+    const el = box?.children[i] as HTMLElement | undefined;
+    if (box && el) box.scrollTo({ left: el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
   }, [i]);
 
   return (
@@ -29,7 +31,7 @@ export function Results() {
           <div>
             <p className="eyebrow mb-[1.5vh] text-[#E6CFA5]">Resultados naturais</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-              Resultados que <span className="text-[#E6CFA5]">ninguém percebe.</span>
+              Resultados que <span className="shimmer shimmer-gold">ninguém percebe.</span>
             </h2>
           </div>
           <p className="max-w-xs text-[0.85rem] leading-snug text-white/85 md:text-base">Quem vê, nota você, não o procedimento.</p>
@@ -64,7 +66,7 @@ export function Results() {
               <button type="button" onClick={() => go(-1)} aria-label="Caso anterior" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 transition-colors hover:bg-white hover:text-wine">
                 <ChevronLeft size={18} strokeWidth={1.5} />
               </button>
-              <div role="tablist" aria-label="Casos" ref={strip} className="flex min-w-0 flex-1 gap-2 overflow-x-auto scroll-smooth py-1 [&::-webkit-scrollbar]:hidden">
+              <div role="tablist" aria-label="Casos" ref={strip} className="relative flex min-w-0 flex-1 gap-2 overflow-x-auto scroll-smooth py-1 [&::-webkit-scrollbar]:hidden">
                 {cases.map((x, k) => (
                   <button
                     key={x.id}

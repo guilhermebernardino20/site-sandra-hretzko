@@ -18,7 +18,7 @@ export function Experience() {
       <Stagger className="grid items-center gap-[3vh] md:grid-cols-12 md:gap-16">
         <Item className="md:col-span-6">
           <div className="relative mx-auto w-full md:max-w-lg">
-            <div aria-hidden className="absolute -top-3 -left-3 h-[80%] w-[80%] rounded-[2rem] bg-olive/15 md:-top-6 md:-left-6" />
+            <div aria-hidden className="animate-float-slow absolute -top-3 -left-3 h-[80%] w-[80%] rounded-[2rem] bg-olive/15 md:-top-6 md:-left-6" />
             <Reveal className="relative h-[20vh] w-[78%] overflow-hidden rounded-[2rem] md:h-[56vh]">
               <Image
                 src={photos.desk}
@@ -28,7 +28,7 @@ export function Experience() {
                 className="object-cover object-[100%_66%]"
               />
             </Reveal>
-            <div className="absolute right-0 bottom-0 h-[13vh] w-[40%] overflow-hidden rounded-2xl border-4 border-white md:-bottom-8 md:h-[26vh] md:w-[44%] md:border-8">
+            <div className="animate-float absolute right-0 bottom-0 h-[13vh] w-[40%] overflow-hidden rounded-2xl border-4 border-white md:-bottom-8 md:h-[26vh] md:w-[44%] md:border-8">
               <Image
                 src={photos.desk}
                 alt="Detalhe do atendimento no consultório"
@@ -44,7 +44,7 @@ export function Experience() {
           <Item>
             <p className="eyebrow mb-[1.5vh] text-olive">A experiência</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-              Como ser recebida <span className="text-olive">em casa.</span>
+              Como ser recebida <span className="shimmer shimmer-olive">em casa.</span>
             </h2>
           </Item>
           <ul className="mt-[2.5vh] border-t border-wine/30">

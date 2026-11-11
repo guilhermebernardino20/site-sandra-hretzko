@@ -16,7 +16,7 @@ export function Philosophy() {
           <Item>
             <p className="eyebrow mb-[2vh] text-[#E6CFA5]">Envelhecer bem</p>
             <h2 className="text-[clamp(2.2rem,min(11vw,8vh),6rem)] leading-[0.95] tracking-tighter uppercase">
-              O medo do <span className="text-[#E6CFA5]">artificial.</span>
+              O medo do <span className="shimmer shimmer-gold">artificial.</span>
             </h2>
           </Item>
           <Item>

@@ -15,7 +15,7 @@ export function Blog() {
           <div>
             <p className="eyebrow mb-[1.5vh] text-[#E6CFA5]">Blog da Dra.</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-              Informação <span className="text-[#E6CFA5]">com calma.</span>
+              Informação <span className="shimmer shimmer-gold">com calma.</span>
             </h2>
           </div>
           <Link

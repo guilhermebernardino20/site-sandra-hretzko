@@ -117,3 +117,49 @@ main footer p {
   text-align: left;
   hyphens: manual;
 }
+
+/* ——— Animações fluidas ——— */
+/* Aurora: manchas de cor que derivam devagar atrás do conteúdo (só transform, barato para a GPU) */
+@keyframes aurora-a { 0%, 100% { transform: translate3d(-8%, -6%, 0) scale(1); } 50% { transform: translate3d(10%, 8%, 0) scale(1.18); } }
+@keyframes aurora-b { 0%, 100% { transform: translate3d(8%, 6%, 0) scale(1.1); } 50% { transform: translate3d(-10%, -8%, 0) scale(0.92); } }
+.aurora-blob { position: absolute; border-radius: 9999px; filter: blur(70px); will-change: transform; pointer-events: none; }
+.aurora-a { animation: aurora-a 22s ease-in-out infinite; }
+.aurora-b { animation: aurora-b 28s ease-in-out infinite; }
+
+/* Brilho que desliza pelas palavras de destaque dos títulos */
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.shimmer {
+  background-image: linear-gradient(100deg, var(--sh-a) 35%, var(--sh-b) 50%, var(--sh-a) 65%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+.shimmer-gold { --sh-a: #e6cfa5; --sh-b: #ffffff; }
+.shimmer-wine { --sh-a: #60211e; --sh-b: #c0705f; }
+.shimmer-olive { --sh-a: #605331; --sh-b: #b7a36a; }
+
+/* Anel que pulsa ao redor de ícones e botões */
+@keyframes ring { 0% { transform: scale(1); opacity: 0.55; } 80%, 100% { transform: scale(1.9); opacity: 0; } }
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid currentColor;
+  animation: ring 3.2s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Zoom lento de foto (efeito de câmera) */
+@keyframes kenburns { 0% { transform: scale(1) translate3d(0, 0, 0); } 100% { transform: scale(1.12) translate3d(-2%, -1.5%, 0); } }
+.kenburns { animation: kenburns 14s ease-in-out infinite alternate; }
+
+/* Respiro suave (escala) */
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+.breathe { animation: breathe 5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-a, .aurora-b, .shimmer, .pulse-ring::before, .kenburns, .breathe { animation: none !important; }
+}

@@ -40,7 +40,7 @@ export function Protocol() {
           <div>
             <p className="eyebrow mb-[1.5vh] text-[#E6CFA5]">Protocolo Sandra</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-              Três técnicas, <span className="text-[#E6CFA5]">um só plano.</span>
+              Três técnicas, <span className="shimmer shimmer-gold">um só plano.</span>
             </h2>
           </div>
           <p className="hidden max-w-sm text-[0.9rem] leading-relaxed text-white/85 md:block md:text-base">
@@ -54,7 +54,8 @@ export function Protocol() {
               key={s.title}
               className="group relative flex gap-4 rounded-2xl border border-white/15 bg-white/5 p-3 transition-all duration-500 hover:-translate-y-1.5 hover:border-[#E6CFA5]/60 hover:bg-white/10 md:block md:p-6"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E6CFA5] text-brown transition-transform duration-500 group-hover:rotate-[360deg] md:h-14 md:w-14">
+              <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E6CFA5] text-brown transition-transform duration-500 group-hover:rotate-[360deg] md:h-14 md:w-14">
+                <span aria-hidden className="pulse-ring absolute inset-0 rounded-full text-[#E6CFA5]" />
                 <s.icon size={22} strokeWidth={1.5} />
               </span>
               <div className="md:mt-4">

@@ -7,7 +7,7 @@ import { Button } from "./Button";
 import { Faq } from "./Faq";
 import { Blog } from "./Blog";
 import { Location } from "./Location";
-import { Item, Reveal, Stagger } from "./Motion";
+import { DrawLine, Item, Reveal, Stagger } from "./Motion";
 import { Tilt } from "./Tilt";
 import { photos, site, whatsappUrl } from "@/lib/site";
 
@@ -18,14 +18,14 @@ export function AboutFooter() {
         <Stagger className="grid items-center gap-[3vh] md:grid-cols-12 md:gap-14">
           <Item className="md:col-span-5">
             <div className="relative mx-auto w-full md:max-w-md">
-              <div aria-hidden className="absolute -bottom-3 -left-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-bottom-6 md:-left-6" />
+              <div aria-hidden className="animate-float-slow absolute -bottom-3 -left-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-bottom-6 md:-left-6" />
               <Tilt className="relative">
                 <Reveal className="relative h-[24vh] w-full overflow-hidden rounded-[2rem] md:h-[64vh]">
                   <Image src={photos.desk} alt="Dra. Sandra Hretzko em seu consultório" fill sizes="(min-width: 768px) 35vw, 90vw" className="object-cover object-[18%_16%]" />
                 </Reveal>
               </Tilt>
               {/* selo de formação */}
-              <div className="absolute right-2 bottom-2 rounded-2xl bg-white/85 px-3 py-2 shadow-lg backdrop-blur-md md:-right-8 md:bottom-10 md:px-5 md:py-4">
+              <div className="breathe absolute right-2 bottom-2 rounded-2xl bg-white/85 px-3 py-2 shadow-lg backdrop-blur-md md:-right-8 md:bottom-10 md:px-5 md:py-4">
                 <p className="eyebrow !text-[0.5rem] text-olive md:!text-[0.58rem]">Formada desde</p>
                 <p className="fat text-2xl leading-none text-wine md:text-4xl">1998</p>
                 <p className="mt-0.5 text-[0.6rem] md:text-xs">Odontologia · PUC-PR</p>
@@ -40,7 +40,7 @@ export function AboutFooter() {
             <Item>
               <p className="eyebrow mb-[1.5vh] text-olive">Sobre a Dra. Sandra</p>
               <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),5rem)] leading-[0.95] tracking-tighter uppercase">
-                Ciência com <span className="text-wine">propósito.</span>
+                Ciência com <span className="shimmer shimmer-wine">propósito.</span>
               </h2>
               <p className="mt-[2.5vh] text-[0.92rem] leading-relaxed text-brown md:text-lg">
                 Cirurgiã-dentista formada pela PUC-PR em 1998.{" "}
@@ -62,6 +62,7 @@ export function AboutFooter() {
                 ].map(([k, t, d]) => (
                   <li key={k} className="group relative border-t border-wine/30 pt-3 transition-colors duration-500 hover:border-wine">
                     <span aria-hidden className="absolute -top-1 left-0 h-2 w-2 rounded-full bg-wine transition-transform duration-500 group-hover:scale-150" />
+                    <DrawLine className="absolute -top-px left-0 w-full bg-wine" />
                     <p className="eyebrow !text-[0.52rem] text-olive">{k}</p>
                     <p className="fat-sm mt-1 text-[0.78rem] leading-tight md:text-base">{t}</p>
                     <p className="mt-1 hidden text-xs text-brown/70 md:block">{d}</p>
@@ -90,13 +91,15 @@ export function AboutFooter() {
             <h2 className="text-[clamp(2rem,min(9.4vw,8vh),7rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
               <span className="block">Pronta para</span>
               <span className="block">
-                se <span className="text-[#E6CFA5]">reconhecer?</span>
+                se <span className="shimmer shimmer-gold">reconhecer?</span>
               </span>
             </h2>
             <div className="mt-[3vh]">
-              <Button href={whatsappUrl} variant="light">
-                Agendar Avaliação
-              </Button>
+              <span className="pulse-ring inline-block rounded-full text-white">
+                <Button href={whatsappUrl} variant="light">
+                  Agendar Avaliação
+                </Button>
+              </span>
             </div>
           </Item>
           <Item>

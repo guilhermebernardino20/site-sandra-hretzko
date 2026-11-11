@@ -24,7 +24,7 @@ export function Location() {
           <Item>
             <p className="eyebrow mb-[1.5vh] text-olive">Como chegar</p>
             <h2 className="text-[clamp(1.9rem,min(9vw,6.5vh),4.5rem)] leading-[0.95] tracking-tighter uppercase">
-              Venha nos <span className="text-wine">visitar.</span>
+              Venha nos <span className="shimmer shimmer-wine">visitar.</span>
             </h2>
           </Item>
           <Item>
@@ -63,7 +63,7 @@ export function Location() {
 
         <Item className="md:col-span-7 md:col-start-6">
           <div className="relative">
-            <div aria-hidden className="absolute -right-3 -bottom-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-right-6 md:-bottom-6" />
+            <div aria-hidden className="animate-float-slow absolute -right-3 -bottom-3 h-[85%] w-[85%] rounded-[2rem] bg-olive/15 md:-right-6 md:-bottom-6" />
             <Reveal className="relative h-[21vh] w-full overflow-hidden rounded-[2rem] shadow-[0_24px_50px_-25px_rgba(54,17,28,0.5)] md:h-[58vh]">
               <iframe
                 title="Mapa com a localização do consultório da Dra. Sandra Hretzko"

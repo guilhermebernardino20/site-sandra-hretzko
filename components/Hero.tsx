@@ -81,7 +81,7 @@ export function Hero() {
           <motion.h1 className="text-[clamp(2rem,min(10.8vw,8vh),5.4rem)] leading-[0.95] tracking-tighter whitespace-nowrap uppercase">
             <MaskLine>Realçar</MaskLine>
             <MaskLine>
-              o que já é <span className="text-wine">seu</span>
+              o que já é <span className="shimmer shimmer-wine">seu</span>
             </MaskLine>
           </motion.h1>
           <Item>
@@ -101,8 +101,8 @@ export function Hero() {
           </Item>
           <Item>
             <ul className="mt-[2.5vh] flex flex-wrap gap-x-5 gap-y-2 text-[0.72rem] md:text-sm">
-              {chips.map((c) => (
-                <li key={c.label} className="group/chip flex cursor-default items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5">
+              {chips.map((c, ci) => (
+                <li key={c.label} style={{ animationDelay: `${ci * 0.8}s` }} className="animate-float group/chip flex cursor-default items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5">
                   <c.icon size={15} strokeWidth={1.5} className="text-olive transition-transform duration-500 group-hover/chip:scale-125 group-hover/chip:rotate-12" /> {c.label}
                 </li>
               ))}

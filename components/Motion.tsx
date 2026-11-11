@@ -67,3 +67,14 @@ export function Reveal({ children, className = "" }: { children: React.ReactNode
     </motion.div>
   );
 }
+
+/** Linha que se desenha da esquerda para a direita ao entrar na tela (use dentro de <Stagger>). */
+export function DrawLine({ className = "", delay = 0 }: { className?: string; delay?: number }) {
+  return (
+    <motion.span
+      aria-hidden
+      variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 1.1, delay, ease: [0.76, 0, 0.24, 1] as const } } }}
+      className={`block h-px origin-left ${className}`}
+    />
+  );
+}
